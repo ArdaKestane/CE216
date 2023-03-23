@@ -74,36 +74,6 @@
                      <children>
                         <StackPane prefHeight="124.0" prefWidth="1250.0" HBox.hgrow="NEVER">
                            <children>
-                              <ImageView fitHeight="237.0" fitWidth="241.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="BOTTOM_RIGHT">
-                                 <image>
-                                    <Image url="@../../../images/man1.png" />
-                                 </image>
-                                 <StackPane.margin>
-                                    <Insets right="250.0" />
-                                 </StackPane.margin>
-                              </ImageView>
-                              <VBox alignment="BOTTOM_LEFT" fillWidth="false" maxHeight="80.0" maxWidth="600.0" prefHeight="80.0" prefWidth="698.0" style="-fx-background-color: #E7B10A; -fx-background-radius: 100;" StackPane.alignment="BOTTOM_CENTER">
-                                 <StackPane.margin>
-                                    <Insets right="175.0" />
-                                 </StackPane.margin>
-                                 <children>
-                                    <TextArea prefHeight="48.0" prefWidth="314.0" promptText="To see the magic, simply type..." stylesheets="@../../../css/textarea.css">
-                                       <font>
-                                          <Font name="Constantia" size="19.0" />
-                                       </font></TextArea>
-                                 </children>
-                                 <padding>
-                                    <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
-                                 </padding>
-                              </VBox>
-                              <ImageView fitHeight="144.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="BOTTOM_LEFT">
-                                 <image>
-                                    <Image url="@../../../images/el.png" />
-                                 </image>
-                                 <StackPane.margin>
-                                    <Insets left="100.0" top="100.0" />
-                                 </StackPane.margin>
-                              </ImageView>
                               <HBox prefHeight="230.0" prefWidth="1217.0" StackPane.alignment="CENTER">
                                  <padding>
                                     <Insets left="150.0" top="20.0" />
@@ -116,6 +86,45 @@
                                     </Text>
                                  </children>
                               </HBox>
+                              <ImageView fitHeight="237.0" fitWidth="241.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="BOTTOM_RIGHT">
+                                 <image>
+                                    <Image url="@../../../images/man1.png" />
+                                 </image>
+                                 <StackPane.margin>
+                                    <Insets right="250.0" />
+                                 </StackPane.margin>
+                              </ImageView>
+                              <HBox alignment="BOTTOM_LEFT" prefHeight="74.0" prefWidth="600.0" spacing="50.0" style="-fx-background-color: #E7B10A; -fx-background-radius: 100;" StackPane.alignment="BOTTOM_CENTER">
+                                 <StackPane.margin>
+                                    <Insets left="235.0" right="415.0" top="145.0" />
+                                 </StackPane.margin>
+                                 <children>
+                                    <TextArea prefHeight="69.0" prefWidth="297.0" promptText="To see the magic, simply type..." stylesheets="@../../../css/textarea.css" HBox.hgrow="ALWAYS">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </TextArea>
+                                    <ImageView fitHeight="47.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="NEVER">
+                                       <image>
+                                          <Image url="@../../../images/magnifier.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                 </padding>
+                              </HBox>
+                              <ImageView fitHeight="144.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="BOTTOM_LEFT">
+                                 <image>
+                                    <Image url="@../../../images/el.png" />
+                                 </image>
+                                 <StackPane.margin>
+                                    <Insets left="100.0" top="100.0" />
+                                 </StackPane.margin>
+                              </ImageView>
                            </children>
                         </StackPane>
                      </children>
@@ -127,7 +136,7 @@
                      <children>
                         <Button mnemonicParsing="false" prefHeight="89.0" prefWidth="110.0" style="-fx-background-color: transparent;">
                            <graphic>
-                              <ImageView fitHeight="99.0" fitWidth="109.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="99.0" fitWidth="117.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../../images/add.png" />
                                  </image>
