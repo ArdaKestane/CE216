@@ -1,16 +1,156 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.dictionary.Controller">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
+<VBox alignment="TOP_CENTER" minHeight="800.0" minWidth="1500.0" prefHeight="800.0" prefWidth="1500.0" spacing="20.0" style="-fx-background-color: #F7F1E5;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dictionary.Controller">
+   <children>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="100.0" prefWidth="109.0">
+               <children>
+                  <ImageView fitHeight="61.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/logo.png" />
+                     </image></ImageView>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Dictionary" wrappingWidth="606.03125">
+                     <font>
+                        <Font name="Constantia" size="64.0" />
+                     </font>
+                  </Text>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="150.0" style="-fx-background-radius: 150; -fx-background-color: #E7B10A; -fx-font-size: 20;" text="Help">
+                     <effect>
+                        <DropShadow height="7.5" offsetX="7.0" offsetY="8.0" radius="2.625" width="5.0">
+                           <color>
+                              <Color red="0.6315789222717285" green="0.6198830604553223" blue="0.6198830604553223" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                  </Button>
+               </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <padding>
+                  <Insets right="50.0" />
+               </padding>
+            </VBox>
+         </children>
+      </HBox>
+      <StackPane prefHeight="150.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+         <children>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" StackPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="94.0" prefWidth="1402.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Text fill="#4c4b16" strokeType="OUTSIDE" strokeWidth="0.0" text="Any word into any language!" wrappingWidth="606.03125">
+                           <font>
+                              <Font name="Constantia" size="64.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="600.0" />
+                           </HBox.margin></Text>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="NEVER">
+                     <children>
+                        <StackPane prefHeight="124.0" prefWidth="1250.0" HBox.hgrow="NEVER">
+                           <children>
+                              <ImageView fitHeight="237.0" fitWidth="241.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="BOTTOM_RIGHT">
+                                 <image>
+                                    <Image url="@../../../images/man1.png" />
+                                 </image>
+                                 <StackPane.margin>
+                                    <Insets right="250.0" />
+                                 </StackPane.margin>
+                              </ImageView>
+                              <VBox alignment="BOTTOM_LEFT" fillWidth="false" maxHeight="80.0" maxWidth="600.0" prefHeight="80.0" prefWidth="698.0" style="-fx-background-color: #E7B10A; -fx-background-radius: 100;" StackPane.alignment="BOTTOM_CENTER">
+                                 <StackPane.margin>
+                                    <Insets right="175.0" />
+                                 </StackPane.margin>
+                                 <children>
+                                    <TextArea prefHeight="48.0" prefWidth="314.0" promptText="To see the magic, simply type..." stylesheets="@../../../css/textarea.css">
+                                       <font>
+                                          <Font name="Constantia" size="19.0" />
+                                       </font></TextArea>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </VBox>
+                              <ImageView fitHeight="144.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="BOTTOM_LEFT">
+                                 <image>
+                                    <Image url="@../../../images/el.png" />
+                                 </image>
+                                 <StackPane.margin>
+                                    <Insets left="100.0" top="100.0" />
+                                 </StackPane.margin>
+                              </ImageView>
+                              <HBox prefHeight="230.0" prefWidth="1217.0" StackPane.alignment="CENTER">
+                                 <padding>
+                                    <Insets left="150.0" top="20.0" />
+                                 </padding>
+                                 <children>
+                                    <Text fill="#4c4b16" strokeType="OUTSIDE" strokeWidth="0.0" text="You only need to type a word into a search engine to learn its translation!" wrappingWidth="611.03125">
+                                       <font>
+                                          <Font name="Constantia" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </StackPane>
+                     </children>
+                  </HBox>
+                  <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="89.0" prefWidth="110.0" style="-fx-background-color: transparent;">
+                           <graphic>
+                              <ImageView fitHeight="99.0" fitWidth="109.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../images/add.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="89.0" prefWidth="110.0" style="-fx-background-color: transparent;">
+                           <graphic>
+                              <ImageView fitHeight="99.0" fitWidth="109.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../images/edit.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets left="250.0" top="20.0" />
+               </padding>
+            </VBox>
+         </children>
+      </StackPane>
+   </children>
 </VBox>

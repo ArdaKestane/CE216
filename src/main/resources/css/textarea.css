@@ -1,6 +1,7 @@
 .text-area *.content {
     -fx-background-color: #E7B10A;
     -fx-border-color: transparent;
+    -fx-text-inner-color: #4C4B16;
 }
 .text-area .scroll-pane .content{
     -fx-background-color: #E7B10A;
