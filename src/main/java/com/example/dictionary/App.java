@@ -12,6 +12,8 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("Main.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1500, 800);
+        stage.setMinWidth(1500);
+        stage.setMinHeight(800);
         stage.setTitle("Dictionary");
         stage.setScene(scene);
         stage.show();
