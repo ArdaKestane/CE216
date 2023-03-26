@@ -1,6 +1,7 @@
 package com.example.dictionary;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 
@@ -27,6 +28,14 @@ public class Translation {
         translations.add(synonyms);
 
         Collections.addAll(synonyms, synm);
+    }
+
+    public Collection<String> getAllWords() {
+        return (Collection<String>) words.keySet();
+    }
+
+    public ArrayList<ArrayList<String>> getTranslations(String word) {
+        return words.get(word);
     }
 
     public String getSourceLanguage() {
