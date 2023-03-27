@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class App extends Application {
     @Override
@@ -20,6 +21,12 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
+        /*
+        SAMPLE USAGE OF CLASSES
+        ArrayList<Translation> translations = Translator.getTranslations();
+        for(String word : translations.get(0).getAllWords())
+            System.out.println(translations.get(0).getTranslations(word));
+         */
         launch();
     }
 }
