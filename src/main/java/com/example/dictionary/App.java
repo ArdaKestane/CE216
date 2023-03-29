@@ -23,10 +23,13 @@ public class App extends Application {
     public static void main(String[] args) {
         /*
         SAMPLE USAGE OF CLASSES
+        */
         ArrayList<Translation> translations = Translator.getTranslations();
-        for(String word : translations.get(0).getAllWords())
-            System.out.println(translations.get(0).getTranslations(word));
-         */
+        for(String word : translations.get(9).getAllWords())
+            for (ArrayList<String> translation : translations.get(9).getTranslations(word))
+                for (String synonym : translation)
+                    System.out.println(synonym);
+
         launch();
     }
 }

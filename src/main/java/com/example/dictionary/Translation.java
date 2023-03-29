@@ -8,6 +8,8 @@ import java.util.HashMap;
 public class Translation {
     private final String sourceLanguage;
     private final String destinationLanguage;
+
+    // Key -> word itself, Outside ArrayList stores different translations (1. 2. etc.), Inside ArrayList stores Synonyms ([..], [..] in 1.)
     private final HashMap<String, ArrayList<ArrayList<String>>> words;
 
     public Translation(String sourceLanguage, String destinationLanguage) {
@@ -16,22 +18,24 @@ public class Translation {
         this.words = new HashMap<>();
     }
 
+    // Add a new word into dictionary and initialize a new ArrayList for its translations
     public void addSourceWord(String word) {
         words.put(word, new ArrayList<>());
     }
 
+    // Add translation for exists word
     public void addTranslation(String word, String translation) {
         ArrayList<ArrayList<String>> translations = words.get(word);
         String[] synm = translation.split(", ");
 
         ArrayList<String> synonyms = new ArrayList<>();
-        translations.add(synonyms);
-
         Collections.addAll(synonyms, synm);
+
+        translations.add(synonyms);
     }
 
     public Collection<String> getAllWords() {
-        return (Collection<String>) words.keySet();
+        return words.keySet();
     }
 
     public ArrayList<ArrayList<String>> getTranslations(String word) {
