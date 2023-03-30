@@ -52,6 +52,10 @@ public class Translator {
         translations.add(engSwe);
         readFile("eng-swe.txt", engSwe);
 
+        Translation engDeu = new Translation("English", "German");
+        translations.add(engDeu);
+        readFile("eng-deu.txt", engDeu);
+
         Translation ellEng = new Translation("Modern Greek", "English");
         translations.add(ellEng);
         readFile("ell-eng.txt", ellEng);
@@ -71,6 +75,10 @@ public class Translator {
         Translation turEng = new Translation("Turkish", "English");
         translations.add(turEng);
         readFile("tur-eng.txt", turEng);
+
+        Translation deuEng = new Translation("German", "English");
+        translations.add(deuEng);
+        readFile("deu-eng.txt", deuEng);
 
 
         return translations;
