@@ -1440,6 +1440,8 @@ para
 1. money
 pars
 1. leopard
+pasta
+1. cake
 patates
 1. potato
 patron

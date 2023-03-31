@@ -27,6 +27,34 @@ public class Translate {
         return sourceWord;
     }
 
+    public ArrayList<ArrayList<String>> getEng() {
+        return eng;
+    }
+
+    public ArrayList<ArrayList<String>> getDeu() {
+        return deu;
+    }
+
+    public ArrayList<ArrayList<String>> getEll() {
+        return ell;
+    }
+
+    public ArrayList<ArrayList<String>> getFra() {
+        return fra;
+    }
+
+    public ArrayList<ArrayList<String>> getSwe() {
+        return swe;
+    }
+
+    public ArrayList<ArrayList<String>> getIta() {
+        return ita;
+    }
+
+    public ArrayList<ArrayList<String>> getTur() {
+        return tur;
+    }
+
     public void setEng(ArrayList<ArrayList<String>> eng) {
         this.eng = eng;
     }

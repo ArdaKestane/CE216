@@ -87,6 +87,10 @@ public class Translator {
         return translations;
     }
 
+    private void setTranslate(String language) {
+
+    }
+
     public static ArrayList<Translate> translate(String word) {
         ArrayList<Translate> translate = new ArrayList<>();
 
@@ -96,7 +100,60 @@ public class Translator {
                 if(w.equals(word)) {
                     // Bu bulduğum kelime hangi dilde?
                     String sourceLanguage = translation.getSourceLanguage();
+                    Translate t = new Translate(sourceLanguage, w);
 
+                    if (sourceLanguage.equals("English")) {
+                        for (Translation tra : translations) {
+                            if (tra.getSourceLanguage().equals(sourceLanguage) && tra.getDestinationLanguage().equals("German")) {
+                                t.setDeu(tra.getTranslations(w));
+                            }
+                            if (tra.getSourceLanguage().equals(sourceLanguage) && tra.getDestinationLanguage().equals("Turkish")) {
+                                t.setTur(tra.getTranslations(w));
+                            }
+                            if (tra.getSourceLanguage().equals(sourceLanguage) && tra.getDestinationLanguage().equals("Modern Greek")) {
+                                t.setEll(tra.getTranslations(w));
+                            }
+                            if (tra.getSourceLanguage().equals(sourceLanguage) && tra.getDestinationLanguage().equals("French")) {
+                                t.setFra(tra.getTranslations(w));
+                            }
+                            if (tra.getSourceLanguage().equals(sourceLanguage) && tra.getDestinationLanguage().equals("Italian")) {
+                                t.setIta(tra.getTranslations(w));
+                            }
+                            if (tra.getSourceLanguage().equals(sourceLanguage) && tra.getDestinationLanguage().equals("Swedish")) {
+                                t.setSwe(tra.getTranslations(w));
+                            }
+                        }
+                    } else {
+                        for (Translation tra : translations) {
+                            if (tra.getSourceLanguage().equals(sourceLanguage) && tra.getDestinationLanguage().equals("English")) {
+                                t.setEng(tra.getTranslations(w));
+                                String engTra = tra.getTranslations(w).get(0).get(0);
+                                for (Translation tra2 : translations) {
+                                    if (tra2.getSourceLanguage().equals("English") && tra2.getDestinationLanguage().equals("German")) {
+                                        t.setDeu(tra2.getTranslations(engTra));
+                                    }
+                                    if (tra2.getSourceLanguage().equals("English") && tra2.getDestinationLanguage().equals("Turkish")) {
+                                        t.setTur(tra2.getTranslations(engTra));
+                                    }
+                                    if (tra2.getSourceLanguage().equals("English") && tra2.getDestinationLanguage().equals("Modern Greek")) {
+                                        t.setEll(tra2.getTranslations(engTra));
+                                    }
+                                    if (tra2.getSourceLanguage().equals("English") && tra2.getDestinationLanguage().equals("French")) {
+                                        t.setFra(tra2.getTranslations(engTra));
+                                    }
+                                    if (tra2.getSourceLanguage().equals("English") && tra2.getDestinationLanguage().equals("Italian")) {
+                                        t.setIta(tra2.getTranslations(engTra));
+                                    }
+                                    if (tra2.getSourceLanguage().equals("English") && tra2.getDestinationLanguage().equals("Swedish")) {
+                                        t.setSwe(tra2.getTranslations(engTra));
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+
+                    translate.add(t);
                     // Diğer 6 dile çevir -> Eğer çevirdiğin dil ingilizce içermiyorsa, sourceLanguage -> English -> destinationLanguage şeklinde çevir
 
                     // Translate objesinin içine at
