@@ -4,8 +4,11 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 
 public class Translator {
+
+    public static ArrayList<Translation> translations = getTranslations();
 
     private static void readFile(String fileName, Translation translation) {
         try {
@@ -29,7 +32,7 @@ public class Translator {
             e.printStackTrace();
         }
     }
-    public static ArrayList<Translation> getTranslations() {
+    private static ArrayList<Translation> getTranslations() {
         ArrayList<Translation> translations = new ArrayList<>();
 
         Translation engTur = new Translation("English", "Turkish");
@@ -82,6 +85,28 @@ public class Translator {
 
 
         return translations;
+    }
+
+    public static ArrayList<Translate> translate(String word) {
+        ArrayList<Translate> translate = new ArrayList<>();
+
+        for(Translation translation : translations) {
+            Collection<String> sourceWords = translation.getAllWords();
+            for (String w : sourceWords) {
+                if(w.equals(word)) {
+                    // Bu bulduğum kelime hangi dilde?
+                    String sourceLanguage = translation.getSourceLanguage();
+
+                    // Diğer 6 dile çevir -> Eğer çevirdiğin dil ingilizce içermiyorsa, sourceLanguage -> English -> destinationLanguage şeklinde çevir
+
+                    // Translate objesinin içine at
+                    // translate ArrayList'inin içine ekle
+                }
+
+            }
+        }
+
+        return translate;
     }
 
 }

@@ -24,7 +24,7 @@ public class App extends Application {
         /*
         SAMPLE USAGE OF CLASSES
         */
-        ArrayList<Translation> translations = Translator.getTranslations();
+        ArrayList<Translation> translations = Translator.translations;
         for(String word : translations.get(9).getAllWords())
             for (ArrayList<String> translation : translations.get(9).getTranslations(word))
                 for (String synonym : translation)
