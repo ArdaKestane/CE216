@@ -31,8 +31,9 @@ public class App extends Application {
 
          */
 
-        ArrayList<Translate> arrList = Translator.translate("book");
+        ArrayList<Translate> arrList = Translator.translate("pencil");
         for (Translate t : arrList) {
+            System.out.print(t.getSourceLanguage() + " : ");
             System.out.println(t.getTur());
         }
 
