@@ -93,68 +93,16 @@ public class Translator {
 
     public static ArrayList<Translate> translate(String word) {
         ArrayList<Translate> translate = new ArrayList<>();
+        boolean isEnglishFound = false;
 
         for(Translation translation : translations) {
             Collection<String> sourceWords = translation.getAllWords();
             for (String w : sourceWords) {
                 if(w.equals(word)) {
-
                     String sourceLanguage = translation.getSourceLanguage();
-                    boolean isFound = false;
+                    if(isEnglishFound && sourceLanguage.equals("English"))
+                        continue;
                     Translate t = new Translate(sourceLanguage, w);
-
-                    for (Translate tr : translate) {
-                        if (tr.getSourceLanguage().equals(sourceLanguage)) {
-                            isFound = true;
-                            t = tr;
-                            break;
-                        }
-                    }
-
-                    if (isFound) {
-                        if (sourceLanguage.equals("English")) {
-                            for (Translation tra : translations) {
-                                if (tra.getSourceLanguage().equals(sourceLanguage) && tra.getDestinationLanguage().equals("German")) {
-                                    t.appendDeu(tra.getTranslations(w));
-                                } else if (tra.getSourceLanguage().equals(sourceLanguage) && tra.getDestinationLanguage().equals("Turkish")) {
-                                    t.appendTur(tra.getTranslations(w));
-                                } else if (tra.getSourceLanguage().equals(sourceLanguage) && tra.getDestinationLanguage().equals("Modern Greek")) {
-                                    t.appendEll(tra.getTranslations(w));
-                                } else if (tra.getSourceLanguage().equals(sourceLanguage) && tra.getDestinationLanguage().equals("French")) {
-                                    t.appendFra(tra.getTranslations(w));
-                                } else if (tra.getSourceLanguage().equals(sourceLanguage) && tra.getDestinationLanguage().equals("Italian")) {
-                                    t.appendIta(tra.getTranslations(w));
-                                } else if (tra.getSourceLanguage().equals(sourceLanguage) && tra.getDestinationLanguage().equals("Swedish")) {
-                                    t.appendSwe(tra.getTranslations(w));
-                                }
-                            }
-                        } else {
-                            for (Translation tra : translations) {
-                                if (tra.getSourceLanguage().equals(sourceLanguage) && tra.getDestinationLanguage().equals("English")) {
-                                    t.appendEng(tra.getTranslations(w));
-                                    String engTra = tra.getTranslations(w).get(0).get(0);
-                                    for (Translation tra2 : translations) {
-                                        if (tra2.getSourceLanguage().equals("English") && tra2.getDestinationLanguage().equals("German")) {
-                                            t.appendDeu(tra2.getTranslations(engTra));
-                                        } else if (tra2.getSourceLanguage().equals("English") && tra2.getDestinationLanguage().equals("Turkish")) {
-                                            t.appendTur(tra2.getTranslations(engTra));
-                                        } else if (tra2.getSourceLanguage().equals("English") && tra2.getDestinationLanguage().equals("Modern Greek")) {
-                                            t.appendEll(tra2.getTranslations(engTra));
-                                        } else if (tra2.getSourceLanguage().equals("English") && tra2.getDestinationLanguage().equals("French")) {
-                                            t.appendFra(tra2.getTranslations(engTra));
-                                        } else if (tra2.getSourceLanguage().equals("English") && tra2.getDestinationLanguage().equals("Italian")) {
-                                            t.appendIta(tra2.getTranslations(engTra));
-                                        } else if (tra2.getSourceLanguage().equals("English") && tra2.getDestinationLanguage().equals("Swedish")) {
-                                            t.appendSwe(tra2.getTranslations(engTra));
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    else {
-
                         if (sourceLanguage.equals("English")) {
                             for (Translation tra : translations) {
                                 if (tra.getSourceLanguage().equals(sourceLanguage) && tra.getDestinationLanguage().equals("German")) {
@@ -171,6 +119,8 @@ public class Translator {
                                     t.setSwe(tra.getTranslations(w));
                                 }
                             }
+
+                            isEnglishFound = true;
                         } else {
                             for (Translation tra : translations) {
                                 if (tra.getSourceLanguage().equals(sourceLanguage) && tra.getDestinationLanguage().equals("English")) {
@@ -195,7 +145,6 @@ public class Translator {
                             }
                         }
                         translate.add(t);
-                    }
                 }
 
             }

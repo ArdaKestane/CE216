@@ -20,7 +20,9 @@ public class Translation {
 
     // Add a new word into dictionary and initialize a new ArrayList for its translations
     public void addSourceWord(String word) {
-        words.put(word, new ArrayList<>());
+        if (!words.containsKey(word)) {
+            words.put(word, new ArrayList<>());
+        }
     }
 
     // Add translation for exists word

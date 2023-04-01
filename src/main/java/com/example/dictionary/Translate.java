@@ -83,37 +83,4 @@ public class Translate {
         this.tur = tur;
     }
 
-    public void appendEng(ArrayList<ArrayList<String>> eng) {
-        this.eng.addAll(eng);
-    }
-
-    public void appendDeu(ArrayList<ArrayList<String>> deu) {
-        if(this.deu != null)
-            this.deu.addAll(deu);
-    }
-
-    public void appendEll(ArrayList<ArrayList<String>> ell) {
-        if(this.ell != null)
-            this.ell.addAll(ell);
-    }
-
-    public void appendFra(ArrayList<ArrayList<String>> fra) {
-        if(this.fra != null)
-            this.fra.addAll(fra);
-    }
-
-    public void appendSwe(ArrayList<ArrayList<String>> swe) {
-        if(this.swe != null)
-            this.swe.addAll(swe);
-    }
-
-    public void appendIta(ArrayList<ArrayList<String>> ita) {
-        if(this.ita != null)
-            this.ita.addAll(ita);
-    }
-
-    public void appendTur(ArrayList<ArrayList<String>> tur) {
-        if(this.tur != null)
-            this.tur.addAll(tur);
-    }
 }
