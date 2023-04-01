@@ -632,9 +632,6 @@ ZIP
 1. CAP, codice di avviamento postale
 Zurich
 1. Zurigo
-...
-
-1. ... fa
 a
 1. a, dentro
 abacus

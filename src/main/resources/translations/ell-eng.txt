@@ -96,7 +96,6 @@
 1. hone
 bits ανά δευτερόλεπτο
 bit/s, bits per second, bps
-
 bytes ανά δευτερόλεπτο
 1. Bps
 2. bytes per second
@@ -10030,7 +10029,6 @@ click away
 1. 2. darling
 2. sweetheart
 φιλική/ερωτική προσφώνηση
-
 αγάπη μου
 1. my love
 αγάρ
@@ -17707,7 +17705,6 @@ click away
 1. foolishness
 ανοιγοκλειόμενος
 gated, on-off, on/off, retractable
-
 ανοικοδομώ
 1. rebuild
 2. reconstruct
@@ -19163,7 +19160,6 @@ gated, on-off, on/off, retractable
 1. 1. counterbalance
 2. offset
 κυριολεκτικά/μεταφορικά
-
 1. 2. compensate
 1. σε πυξίδα
 αντισταθμιστικός
@@ -23381,7 +23377,6 @@ gated, on-off, on/off, retractable
 1. με αργό τρόπο
 1. 2. late
 σε προχωρημένη ώρα/καθυστερημένα
-
 αργίλιο
 1. aluminium
 2. aluminum
@@ -23859,7 +23854,6 @@ gated, on-off, on/off, retractable
 3. not give a rat's ass
 4. not give a shit
 γράφω κάτι/κάποιον στ’ αρχίδια μου|
-
 1. 3. kiss my arse
 2. kiss my ass
 3. up yours!
@@ -27218,7 +27212,6 @@ gated, on-off, on/off, retractable
 1. base unit
 βασικό σύστημα εισόδου/εξόδου
 BIOS, basic input/output system
-
 βασικός
 1. basic 2.
 1. στη χημεία
@@ -30706,7 +30699,6 @@ BIOS, basic input/output system
 1. picturesque
 2. quaint
 ελκυστικά ασυνήθιστός ή/και παλιομοδίτικος
-
 γραφομηχανή
 1. typewriter
 γρεναδιέρος
@@ -31185,7 +31177,6 @@ BIOS, basic input/output system
 1. network
 δίκτυο παράδοσης περιεχομένου
 CDN, content delivery/distribution network
-
 δίκτυο υπολογιστών
 1. network
 δίκυκλο
@@ -32388,7 +32379,6 @@ CDN, content delivery/distribution network
 2. άτακτο παιδί
 1. 2. bobcat
 μικρός μηχανικός εκσκαφέας/φορτωτής
-
 διαβολάκος
 1. imp
 διαβολή
@@ -33367,7 +33357,6 @@ CDN, content delivery/distribution network
 διατύπωση
 1. 1. postulation
 λεκτική ανάπτυξη θεωρίας/εκτίμηση πριν την οριστική απόδειξη
-
 1. 2. formulation
 2. wording
 1. τρόπος έκφρασης
@@ -35162,7 +35151,6 @@ CDN, content delivery/distribution network
 3. recording
 1. 2. record
 πληροφορική καταχώρηση/βάσεις δεδομένων
-
 1. 3. burn
 1. πληροφορική μόνιμη εγγραφή σε μνήμη
 εγγραφή δραστηριοποίησης
@@ -49325,7 +49313,6 @@ CDN, content delivery/distribution network
 1. read head
 κεφαλή ανάγνωσης/εγγραφής
 read/write head
-
 κεφαλή εγγραφής
 1. write head
 κεφαλίδα
@@ -53701,7 +53688,6 @@ read/write head
 1. η λεκάνη της τουαλέτας
 1. 5. wash basin
 πλαστικό δοχείο πλύσης/πλυσίματος
-
 λεκάνη απορροής
 1. catchment basin
 2. drainage basin
@@ -53849,13 +53835,10 @@ read/write head
 λεπτό
 1. 1. cent
 1/100 του ευρώ
-
 1. 2. minute 2.
 1/60 της μοίρας
-
 1. 3.
 1/60 της ώρας
-
 λεπτό έντερο
 1. small intestine
 λεπτόκυρτος
@@ -56290,7 +56273,6 @@ read/write head
 2. look
 ματιάζω
 cast/give the evil eye
-
 ματμαζέλ
 1. miss
 ματοκύλισμα
@@ -62092,7 +62074,6 @@ cast/give the evil eye
 1. unlearn
 ξεματιάζω
 cast off/remove/ward off the evil eye
-
 ξεμοντάρω
 1. dismount
 ξεμπερδεύω
@@ -66278,7 +66259,6 @@ cast off/remove/ward off the evil eye
 1. 2. lutem
 2. please
 σε/σας παρακαλώ
-
 παρακαμπτήριος
 1. 1. circuitous
 2. detour
@@ -67437,7 +67417,6 @@ cast off/remove/ward off the evil eye
 1. πληροφορική
 πελάτης-εξυπηρετητής
 client-server, client/server
-
 πελαγικός
 1. pelagic
 πελαργός
@@ -71436,7 +71415,6 @@ client-server, client/server
 προσωπικός
 1. 1. personal
 σχετικός με πρόσωπο/άτομο
-
 1. 2. facial
 1. σχετικός με τμήμα του σώματος
 προσωπικός υπολογιστής
@@ -86474,7 +86452,6 @@ client-server, client/server
 2. namby-pamby
 3. wimp
 δειλός/μη ανδροπρεπής
-
 1. 2. European greenfinch
 2. oriole
 1. πτηνό
@@ -87937,7 +87914,6 @@ client-server, client/server
 φύλο
 1. 1. sex
 αρσενικό/θηλυκό
-
 1. 2. tribe
 1. φυλετική ομάδα
 φύμα
@@ -90182,7 +90158,6 @@ client-server, client/server
 ψητό
 come
 φτάνω/πηγαίνω/μπαίνω στο ψητό|
-
 ψητός
 1. roast
 ψηφίζω

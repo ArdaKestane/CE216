@@ -1,5 +1,3 @@
-3D
-1. τρισδιάστατο
 a
 1. ένα
 2. μια
@@ -6082,7 +6080,6 @@ black and white photo
 1. ασπρομαύρη φωτογραφία
 black and white television
 α/μ τηλεόραση
-
 blackbird
 1. κότσυφας
 blackboard
@@ -29764,7 +29761,6 @@ modelling
 1. μόντελινγκ
 modem
 συσκευή τηλεπικοινωνίας η/υ
-
 moderate
 1. μέτριος
 2. μετριοπαθής
@@ -40889,7 +40885,6 @@ shoplifter
 1. κλέφτης  (από μαγαζιά)
 shoplifting
 κλοπή  (από μαγαζιά/μαγαζί)
-
 shopper
 1. αυτός που ψωνίζει
 shopping
