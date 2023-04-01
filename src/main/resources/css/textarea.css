@@ -1,8 +1,31 @@
+* {
+    -fx-primary-color: #E7B10A;
+    -fx-secondary-color: #4C4B16;
+    -fx-grey-color: #b9b9b9;
+
+    -fx-focus-color: -fx-secondary-color;
+}
+
+
 .text-area *.content {
-    -fx-background-color: #E7B10A;
-    -fx-border-color: transparent;
+    -fx-background-color: #E7B10A , #E7B10A  ;
+    -fx-border-color: #E7B10A, #E7B10A;
     -fx-text-inner-color: #4C4B16;
+    -fx-text-fill: white;
 }
 .text-area .scroll-pane .content{
-    -fx-background-color: #E7B10A;
+    -fx-background-color: #E7B10A , #E7B10A ;
+    -fx-text-fill: white;
+}
+
+
+.text-area {
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-background-radius: 0;
+    -fx-text-align: center;
+    -fx-text-fill: white;
+}
+.text-area:focused {
+    -fx-background-color: -fx-primary-color, -fx-primary-color ;
+    -fx-text-fill: white;
 }
