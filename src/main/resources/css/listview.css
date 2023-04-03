@@ -1,0 +1,21 @@
+.list-cell:odd { -fx-background-color: #898121; /* 1 */ }
+.list-cell:even { -fx-background-color: #4C4B16; /* for information */ }
+.list-view {    
+    -fx-background-color: transparent;
+    -fx-background-radius: 20px;
+}
+
+.list-cell, .list-cell::focused {
+    -fx-border-radius: 20px;
+}
+
+.list-cell {
+    -fx-background-color: white;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-font-size: 16pt;
+    -fx-text-overrun: ellipsis;
+    -fx-wrap-text: true;
+    -fx-text-fill: white;
+
+}
