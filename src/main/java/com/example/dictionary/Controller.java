@@ -67,8 +67,6 @@ public class Controller implements Initializable {
 
         searchField.setText(searchedWord);
         showTranslations(searchedWord , dstBox.getValue());
-
-
     }
 
     public void showSynonyms(){
@@ -87,25 +85,25 @@ public class Controller implements Initializable {
                 temp = t.getTur(); // if the program is opened for the first time , show the translations in turkish by default
                 initially = false;
             }
-            else if(dstLng.equals("tr")){
+            else if(dstLng.equals("Turkish")){
                 temp = t.getTur();
             }
-            else if(dstLng.equals("en")){
+            else if(dstLng.equals("English")){
                 temp = t.getEng();
             }
-            else if(dstLng.equals("de")){
+            else if(dstLng.equals("German")){
                 temp = t.getDeu();
             }
-            else if(dstLng.equals("fr")){
+            else if(dstLng.equals("Greek")){
+                temp = t.getEll();
+            }
+            else if(dstLng.equals("French")){
                 temp = t.getFra();
             }
-            else if(dstLng.equals("fra")){
-                temp = t.getFra();
-            }
-            else if(dstLng.equals("ita")){
+            else if(dstLng.equals("Italian")){
                 temp = t.getIta();
             }
-            else if(dstLng.equals("swe")){
+            else if(dstLng.equals("Swedish")){
                 temp = t.getSwe();
             }
             if(temp == null)
@@ -132,13 +130,18 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        sourceBox.getItems().addAll("tr","en","de","fr","fra","ita","swe");
-        dstBox.getItems().addAll("tr","en","de","fr","fra","ita","swe");
-        sourceBox.setValue("en");
-        dstBox.setValue("tr");
+        sourceBox.getItems().addAll("Turkish","English","German","Greek","French","Italian","Swedish");
+        dstBox.getItems().addAll("Turkish","English","German","Greek","French","Italian","Swedish");
+        sourceBox.setValue("English");
+        dstBox.setValue("Turkish");
         searchField.setOnKeyPressed(event -> {
             if(event.getCode().toString().equals("ENTER")){
                 searchFromResult();
+            }
+        });
+        searchArea.setOnKeyPressed(event -> {
+            if(event.getCode().toString().equals("ENTER")){
+                searchFromLanding();
             }
         });
         translationsButton.setOnAction(event -> {
