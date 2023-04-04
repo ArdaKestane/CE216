@@ -52,21 +52,26 @@ public class Controller implements Initializable {
     }
 
     public void searchFromLanding(){
-        String searchedWord = searchArea.getText();
+        String searchedWord = searchArea.getText().trim().toLowerCase();
         if(searchedWord.equals(""))
             return ;
+        System.out.print("Landing Page"+searchedWord);
         searchField.setText(searchedWord);
-        showTranslations(searchedWord , dstBox.getValue());
+        int x =showTranslations(searchedWord);
+        if(x==0)
+            wordList.getItems().add("There is no translate");
         landingPage.setVisible(false);
         resultPage.setVisible(true);
     }
     public void searchFromResult(){
-        String searchedWord = searchField.getText();
+        String searchedWord = searchField.getText().trim().toLowerCase();
         if(searchedWord.equals(""))
             return ;
-
+        System.out.print("Result Page"+searchedWord);
         searchField.setText(searchedWord);
-        showTranslations(searchedWord , dstBox.getValue());
+        int x = showTranslations(searchedWord );
+        if(x==0)
+            wordList.getItems().add("There is no translate");
     }
 
     public void showSynonyms(){
@@ -74,56 +79,80 @@ public class Controller implements Initializable {
 
 
     }
-    public void showTranslations(String word , String dstLng){
-        if(word.equals("")) // if the word is empty , do nothing
-            return ;
+    public int showTranslations(String word){
+        int semaphore = 0;
         wordList.getItems().clear();
         ArrayList<Translate> translationList = Translator.translate(word);
         ArrayList<ArrayList<String>> temp = null;
-        for (Translate t : translationList) {
-            if(initially){
-                temp = t.getTur(); // if the program is opened for the first time , show the translations in turkish by default
-                initially = false;
-            }
-            else if(dstLng.equals("Turkish")){
-                temp = t.getTur();
-            }
-            else if(dstLng.equals("English")){
-                temp = t.getEng();
-            }
-            else if(dstLng.equals("German")){
-                temp = t.getDeu();
-            }
-            else if(dstLng.equals("Greek")){
-                temp = t.getEll();
-            }
-            else if(dstLng.equals("French")){
-                temp = t.getFra();
-            }
-            else if(dstLng.equals("Italian")){
-                temp = t.getIta();
-            }
-            else if(dstLng.equals("Swedish")){
-                temp = t.getSwe();
-            }
-            if(temp == null)
-                return ;
-
-            for (ArrayList<String> arr : temp) {
-                StringBuilder tempS = new StringBuilder();
-                for (int i =0 ; i<arr.size() ; i++)
-                {
-                    String w= arr.get(i);
-                    if(i!=arr.size()-1)
-                        tempS.append(w).append(",");
-                    else
-                        tempS.append(w);
+        String dstLng = dstBox.getValue() == null ? "English" : dstBox.getValue() ;
+        String srcLng = sourceBox.getValue() == null ? "Turkish" : sourceBox.getValue() ;
+        Translate t  = null;
+        System.out.print("Search func:"+word);
+        if(translationList.size()==0){
+            System.out.println("TranslationList is empty");
+            return 0; // there is no translate
+        } else if (initially) {
+            t = translationList.get(0);
+            initially = false;
+        }
+        else {
+            for (Translate translate : translationList ) {
+                if(translate.getSourceLanguage().equals(srcLng)){
+                    t = translate ;
                 }
-                String line = tempS.toString() ;
-                wordList.getItems().add(line);
-
             }
         }
+        if(t == null){
+            System.out.println("There is no Translate");
+            return 0;
+        }
+        if(initially){
+            temp = t.getTur(); // if the program is opened for the first time , show the translations in turkish by default
+            initially = false;
+        }
+        else if(dstLng.equals("Turkish")){
+            temp = t.getTur();
+        }
+        else if(dstLng.equals("English")){
+            temp = t.getEng();
+        }
+        else if(dstLng.equals("German")){
+            temp = t.getDeu();
+        }
+        else if(dstLng.equals("Greek")){
+            temp = t.getEll();
+        }
+        else if(dstLng.equals("French")){
+            temp = t.getFra();
+        }
+        else if(dstLng.equals("Italian")){
+            temp = t.getIta();
+        }
+        else if(dstLng.equals("Swedish")){
+            temp = t.getSwe();
+        }
+        if(temp == null)
+            return 0;
+
+        if(temp.size()==0)
+            wordList.getItems().add("There is no translate");
+        for (ArrayList<String> arr : temp) {
+            StringBuilder tempS = new StringBuilder();
+            for (int i =0 ; i<arr.size() ; i++)
+            {
+                String w= arr.get(i);
+                if(i!=arr.size()-1)
+                    tempS.append(w).append(",");
+                else
+                    tempS.append(w);
+            }
+            String line = tempS.toString() ;
+            wordList.getItems().add(line);
+        }
+        sourceBox.setValue(t.getSourceLanguage());
+        dstBox.setValue(dstLng);
+
+        return 1 ;
 
     }
 
@@ -132,8 +161,8 @@ public class Controller implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         sourceBox.getItems().addAll("Turkish","English","German","Greek","French","Italian","Swedish");
         dstBox.getItems().addAll("Turkish","English","German","Greek","French","Italian","Swedish");
-        sourceBox.setValue("English");
-        dstBox.setValue("Turkish");
+        sourceBox.setValue("Turkish");
+        dstBox.setValue("English");
         searchField.setOnKeyPressed(event -> {
             if(event.getCode().toString().equals("ENTER")){
                 searchFromResult();
@@ -145,10 +174,14 @@ public class Controller implements Initializable {
             }
         });
         translationsButton.setOnAction(event -> {
-            showTranslations(searchField.getText() , dstBox.getValue());
+            showTranslations(searchField.getText());
         });
         synonymsButton.setOnAction(event -> {
             showSynonyms();
+        });
+        dstBox.setOnAction(event ->{
+            showTranslations(searchField.getText());
+
         });
     }
 

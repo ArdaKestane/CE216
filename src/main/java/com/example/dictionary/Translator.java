@@ -39,7 +39,7 @@ public class Translator {
         translations.add(engTur);
         readFile("eng-tur.txt", engTur);
 
-        Translation engEll = new Translation("English", "Modern Greek");
+        Translation engEll = new Translation("English", "Greek");
         translations.add(engEll);
         readFile("eng-ell.txt", engEll);
 
@@ -59,7 +59,7 @@ public class Translator {
         translations.add(engDeu);
         readFile("eng-deu.txt", engDeu);
 
-        Translation ellEng = new Translation("Modern Greek", "English");
+        Translation ellEng = new Translation("Greek", "English");
         translations.add(ellEng);
         readFile("ell-eng.txt", ellEng);
 
@@ -109,7 +109,7 @@ public class Translator {
                                     t.setDeu(tra.getTranslations(w));
                                 } else if (tra.getSourceLanguage().equals(sourceLanguage) && tra.getDestinationLanguage().equals("Turkish")) {
                                     t.setTur(tra.getTranslations(w));
-                                } else if (tra.getSourceLanguage().equals(sourceLanguage) && tra.getDestinationLanguage().equals("Modern Greek")) {
+                                } else if (tra.getSourceLanguage().equals(sourceLanguage) && tra.getDestinationLanguage().equals("Greek")) {
                                     t.setEll(tra.getTranslations(w));
                                 } else if (tra.getSourceLanguage().equals(sourceLanguage) && tra.getDestinationLanguage().equals("French")) {
                                     t.setFra(tra.getTranslations(w));
@@ -131,7 +131,7 @@ public class Translator {
                                             t.setDeu(tra2.getTranslations(engTra));
                                         } else if (tra2.getSourceLanguage().equals("English") && tra2.getDestinationLanguage().equals("Turkish")) {
                                             t.setTur(tra2.getTranslations(engTra));
-                                        } else if (tra2.getSourceLanguage().equals("English") && tra2.getDestinationLanguage().equals("Modern Greek")) {
+                                        } else if (tra2.getSourceLanguage().equals("English") && tra2.getDestinationLanguage().equals("Greek")) {
                                             t.setEll(tra2.getTranslations(engTra));
                                         } else if (tra2.getSourceLanguage().equals("English") && tra2.getDestinationLanguage().equals("French")) {
                                             t.setFra(tra2.getTranslations(engTra));
