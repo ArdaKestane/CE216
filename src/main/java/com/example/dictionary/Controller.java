@@ -54,9 +54,8 @@ public class Controller implements Initializable {
         String searchedWord = searchArea.getText().trim().toLowerCase();
         if(searchedWord.equals(""))
             return ;
-        System.out.print("Landing Page"+searchedWord);
         searchField.setText(searchedWord);
-        int x =showTranslations(searchedWord);
+        showTranslations(searchedWord);
 
         landingPage.setVisible(false);
         resultPage.setVisible(true);
@@ -65,9 +64,8 @@ public class Controller implements Initializable {
         String searchedWord = searchField.getText().trim().toLowerCase();
         if(searchedWord.equals(""))
             return ;
-        System.out.print("Result Page"+searchedWord);
         searchField.setText(searchedWord);
-        int x = showTranslations(searchedWord );
+        showTranslations(searchedWord );
 
     }
 
@@ -77,14 +75,12 @@ public class Controller implements Initializable {
 
     }
     public int showTranslations(String word){
-        int semaphore = 0;
         wordList.getItems().clear();
         ArrayList<Translate> translationList = Translator.translate(word);
         ArrayList<ArrayList<String>> temp = null;
         String dstLng = dstBox.getValue() == null ? "English" : dstBox.getValue() ;
         String srcLng = sourceBox.getValue() == null ? "Turkish" : sourceBox.getValue() ;
         Translate t  = null;
-        System.out.print("Search func:"+word);
         if(translationList.size()==0){
             System.out.println("TranslationList is empty");
             return 0; // there is no translate
@@ -144,6 +140,7 @@ public class Controller implements Initializable {
                     tempS.append(w);
             }
             String line = tempS.toString() ;
+            System.out.println(line);
             wordList.getItems().add(line);
         }
         sourceBox.setValue(t.getSourceLanguage());
@@ -174,6 +171,14 @@ public class Controller implements Initializable {
         synonymsButton.setOnAction(event -> showSynonyms());
         dstBox.setOnAction(event -> showTranslations(searchField.getText()));
         sourceBox.setOnAction(event -> showTranslations(searchField.getText()));
+        wordList.setOnMouseClicked(event -> {
+            if(event.getClickCount() == 2){
+                String selectedWord = wordList.getSelectionModel().getSelectedItem();
+                searchField.setText(selectedWord);
+                showTranslations(selectedWord);
+            }
+        });
+
     }
 
 

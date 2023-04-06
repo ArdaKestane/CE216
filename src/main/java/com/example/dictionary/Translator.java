@@ -13,7 +13,7 @@ public class Translator {
     private static void readFile(String fileName, Translation translation) {
         try {
             String word = "";
-            BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/translations/" + fileName));
+            BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/translations/" + fileName, java.nio.charset.StandardCharsets.UTF_8));
             String line = reader.readLine();
             while (line != null) {
                 try {
