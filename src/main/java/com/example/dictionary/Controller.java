@@ -28,10 +28,7 @@ public class Controller implements Initializable {
     private ChoiceBox<String> sourceBox ;
     @FXML
     private ChoiceBox<String> dstBox ;
-
-    private boolean isTOpened = false; // if the translation is opened
-    private boolean isSOpened = false; // if the synonyms is opened
-    private boolean initially = true; // if the program is opened for the first time
+    
 
     /***
     // Problem 1: Character set problem occurs when non-english characters are entered
@@ -171,20 +168,10 @@ public class Controller implements Initializable {
                 searchFromLanding();
             }
         });
-        translationsButton.setOnAction(event -> {
-            showTranslations(searchField.getText());
-        });
-        synonymsButton.setOnAction(event -> {
-            showSynonyms();
-        });
-        dstBox.setOnAction(event ->{
-            showTranslations(searchField.getText());
-
-        });
-        sourceBox.setOnAction(event ->{
-            showTranslations(searchField.getText());
-
-        });
+        translationsButton.setOnAction(event -> showTranslations(searchField.getText()));
+        synonymsButton.setOnAction(event -> showSynonyms());
+        dstBox.setOnAction(event -> showTranslations(searchField.getText()));
+        sourceBox.setOnAction(event -> showTranslations(searchField.getText()));
     }
 
 
