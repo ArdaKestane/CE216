@@ -28,7 +28,9 @@ public class Controller implements Initializable {
     private ChoiceBox<String> sourceBox ;
     @FXML
     private ChoiceBox<String> dstBox ;
+
     
+    private boolean initially = true; // if the program is opened for the first time
 
     /***
     // Problem 1: Character set problem occurs when non-english characters are entered
