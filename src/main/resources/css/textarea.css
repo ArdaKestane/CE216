@@ -24,6 +24,7 @@
     -fx-background-radius: 0;
     -fx-text-align: center;
     -fx-text-fill: white;
+    -fx-background-color: -fx-primary-color, -fx-primary-color ;
 }
 .text-area:focused {
     -fx-background-color: -fx-primary-color, -fx-primary-color ;
