@@ -58,8 +58,7 @@ public class Controller implements Initializable {
         System.out.print("Landing Page"+searchedWord);
         searchField.setText(searchedWord);
         int x =showTranslations(searchedWord);
-        if(x==0)
-            wordList.getItems().add("There is no translate");
+
         landingPage.setVisible(false);
         resultPage.setVisible(true);
     }
@@ -70,8 +69,7 @@ public class Controller implements Initializable {
         System.out.print("Result Page"+searchedWord);
         searchField.setText(searchedWord);
         int x = showTranslations(searchedWord );
-        if(x==0)
-            wordList.getItems().add("There is no translate");
+
     }
 
     public void showSynonyms(){
@@ -180,6 +178,10 @@ public class Controller implements Initializable {
             showSynonyms();
         });
         dstBox.setOnAction(event ->{
+            showTranslations(searchField.getText());
+
+        });
+        sourceBox.setOnAction(event ->{
             showTranslations(searchField.getText());
 
         });
