@@ -20,7 +20,7 @@ public class Translator {
                     Integer.parseInt(Character.toString(line.charAt(0)));
                     translation.addTranslation(word, line.substring(3));
                 } catch (NumberFormatException ex ) {
-                    word = line;
+                    word = line.toLowerCase();
                     translation.addSourceWord(word);
                 } catch (StringIndexOutOfBoundsException s) {
                     break;
