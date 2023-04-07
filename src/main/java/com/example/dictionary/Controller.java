@@ -15,7 +15,7 @@ public class Controller implements Initializable {
     @FXML
     private VBox resultPage;
     @FXML
-    private TextArea searchArea ;
+    private TextField searchArea ;
     @FXML
     private TextField searchField ;
     @FXML
@@ -48,6 +48,7 @@ public class Controller implements Initializable {
     public void home(){
         landingPage.setVisible(true);
         resultPage.setVisible(false);
+        searchArea.setText("");
     }
 
     public void searchFromLanding(){

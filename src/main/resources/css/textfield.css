@@ -7,35 +7,35 @@
 }
 
 
-.text-area *.content {
+.text-field *.content {
     -fx-background-color: #E7B10A , #E7B10A  ;
     -fx-border-color: #E7B10A, #E7B10A;
     -fx-text-inner-color: #4C4B16;
     -fx-text-fill: white;
 }
-.text-area .scroll-pane .content{
+.text-field .scroll-pane .content{
     -fx-background-color: #E7B10A , #E7B10A ;
     -fx-text-fill: white;
 }
 
 
-.text-area {
+.text-field {
     -fx-background-insets: 0, 0 0 1 0;
     -fx-background-radius: 0;
     -fx-text-align: center;
     -fx-text-fill: white;
     -fx-background-color: -fx-primary-color, -fx-primary-color ;
 }
-.text-area:focused {
+.text-field:focused {
     -fx-background-color: -fx-primary-color, -fx-primary-color ;
     -fx-text-fill: white;
 }
 
-.text-area .scroll-bar:vertical {
+.text-field .scroll-bar:vertical {
     -fx-pref-width: 1;
     -fx-opacity: 0;
 }
-.text-area .scroll-bar:horizontal {
+.text-field .scroll-bar:horizontal {
     -fx-pref-height: 1;
     -fx-opacity: 0;
 }
