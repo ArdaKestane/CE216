@@ -61,7 +61,7 @@
       </HBox>
       <StackPane prefHeight="150.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
          <children>
-            <VBox fx:id="landingPage" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" StackPane.alignment="CENTER">
+            <VBox fx:id="landingPage" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" visible="false" StackPane.alignment="CENTER">
                <children>
                   <HBox alignment="CENTER" maxHeight="300.0" prefHeight="94.0" prefWidth="1402.0" VBox.vgrow="ALWAYS">
                      <children>
@@ -172,7 +172,7 @@
                   <Insets left="250.0" top="20.0" />
                </padding>
             </VBox>
-            <VBox fx:id="resultPage" prefHeight="200.0" prefWidth="100.0" visible="false">
+            <VBox fx:id="resultPage" prefHeight="200.0" prefWidth="100.0">
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
                      <children>
@@ -266,7 +266,7 @@
                   </HBox>
                   <HBox prefHeight="495.0" prefWidth="1500.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <ListView fx:id="wordList" focusTraversable="false" prefHeight="391.0" prefWidth="1488.0" style="-fx-background-color: #898121; -fx-background-radius: 20;" stylesheets="@../../../css/listview.css" HBox.hgrow="ALWAYS" />
+                        <ListView fx:id="wordList" focusTraversable="false" onMouseClicked="#setCellFactory" prefHeight="391.0" prefWidth="1488.0" style="-fx-background-color: #898121; -fx-background-radius: 20;" stylesheets="@../../../css/listview.css" HBox.hgrow="ALWAYS" />
                      </children>
                      <padding>
                         <Insets bottom="50.0" left="20.0" right="20.0" top="20.0" />

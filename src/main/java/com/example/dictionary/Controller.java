@@ -42,7 +42,8 @@ public class Controller implements Initializable {
 
 
     public void initialize() {
-
+        wordList.setMouseTransparent( true );
+        wordList.setFocusTraversable( false );
     }
 
     public void home(){
@@ -66,6 +67,13 @@ public class Controller implements Initializable {
         for(Translate translate : translationList){
             sourceBox.getItems().add(translate.getSourceLanguage().toString());
         }
+
+        if(!sourceBox.getItems().isEmpty()){
+            sourceBox.getSelectionModel().select(0);
+        }
+        else{
+            System.out.println("The word is not available in the dictionary.");
+        }
     }
 
     public void searchFromResult(){
@@ -79,6 +87,13 @@ public class Controller implements Initializable {
         sourceBox.getItems().clear();
         for(Translate translate : translationList){
             sourceBox.getItems().add(translate.getSourceLanguage().toString());
+        }
+
+        if(!sourceBox.getItems().isEmpty()){
+            sourceBox.getSelectionModel().select(0);
+        }
+        else{
+            System.out.println("The word is not available in the dictionary.");
         }
 
     }
