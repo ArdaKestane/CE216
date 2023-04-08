@@ -60,13 +60,26 @@ public class Controller implements Initializable {
 
         landingPage.setVisible(false);
         resultPage.setVisible(true);
+
+    ArrayList<Translate> translationList = Translator.translate(searchedWord);
+    sourceBox.getItems().clear();
+        for(Translate translate : translationList){
+            sourceBox.getItems().add(translate.getSourceLanguage().toString());
+        }
     }
+
     public void searchFromResult(){
         String searchedWord = searchField.getText().trim().toLowerCase();
         if(searchedWord.equals(""))
             return ;
         searchField.setText(searchedWord);
-        showTranslations(searchedWord );
+        showTranslations(searchedWord);
+
+        ArrayList<Translate> translationList = Translator.translate(searchedWord);
+        sourceBox.getItems().clear();
+        for(Translate translate : translationList){
+            sourceBox.getItems().add(translate.getSourceLanguage().toString());
+        }
 
     }
 
@@ -78,6 +91,7 @@ public class Controller implements Initializable {
     public int showTranslations(String word){
         wordList.getItems().clear();
         ArrayList<Translate> translationList = Translator.translate(word);
+        
         ArrayList<ArrayList<String>> temp = null;
         String dstLng = dstBox.getValue() == null ? "English" : dstBox.getValue() ;
         String srcLng = sourceBox.getValue() == null ? "Turkish" : sourceBox.getValue() ;
@@ -154,7 +168,7 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        sourceBox.getItems().addAll("Turkish","English","German","Greek","French","Italian","Swedish");
+        
         dstBox.getItems().addAll("Turkish","English","German","Greek","French","Italian","Swedish");
         sourceBox.setValue("Turkish");
         dstBox.setValue("English");
