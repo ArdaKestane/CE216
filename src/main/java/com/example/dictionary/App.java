@@ -29,13 +29,12 @@ public class App extends Application {
                 for (String synonym : translation)
                     System.out.println(synonym);
 
-         */
-
         ArrayList<Translate> arrList = Translator.translate("book");
         for (Translate t : arrList) {
             System.out.print(t.getSourceLanguage() + " : ");
             System.out.println(t.getTur());
         }
+         */
 
         launch();
     }
