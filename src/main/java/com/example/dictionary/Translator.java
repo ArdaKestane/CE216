@@ -86,11 +86,6 @@ public class Translator {
 
         return translations;
     }
-
-    private void setTranslate(String language) {
-
-    }
-
     public static ArrayList<Translate> translate(String word) {
         ArrayList<Translate> translate = new ArrayList<>();
         boolean isEnglishFound = false;
@@ -127,6 +122,8 @@ public class Translator {
                                     t.setEng(tra.getTranslations(w));
                                     String engTra = tra.getTranslations(w).get(0).get(0);
                                     for (Translation tra2 : translations) {
+                                        if(tra2.getDestinationLanguage().equals(sourceLanguage))
+                                            continue;
                                         if (tra2.getSourceLanguage().equals("English") && tra2.getDestinationLanguage().equals("German")) {
                                             t.setDeu(tra2.getTranslations(engTra));
                                         } else if (tra2.getSourceLanguage().equals("English") && tra2.getDestinationLanguage().equals("Turkish")) {
