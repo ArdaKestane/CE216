@@ -3,6 +3,9 @@ package com.example.dictionary;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -13,7 +16,8 @@ public class Translator {
     private static void readFile(String fileName, Translation translation) {
         try {
             String word = "";
-            BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/translations/" + fileName, java.nio.charset.StandardCharsets.UTF_8));
+            URL url = Translator.class.getResource("/translations/" + fileName);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream(), StandardCharsets.UTF_8));
             String line = reader.readLine();
             while (line != null) {
                 try {
@@ -32,6 +36,7 @@ public class Translator {
             e.printStackTrace();
         }
     }
+
     private static ArrayList<Translation> getTranslations() {
         ArrayList<Translation> translations = new ArrayList<>();
 
