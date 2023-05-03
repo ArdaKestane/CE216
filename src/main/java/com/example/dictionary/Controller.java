@@ -5,6 +5,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 
+
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.effect.BoxBlur;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -28,6 +36,10 @@ public class Controller implements Initializable {
     private ChoiceBox<String> sourceBox ;
     @FXML
     private ChoiceBox<String> dstBox ;
+    @FXML
+    private VBox mainVBox;
+    @FXML
+    private VBox addModal;
 
     
     private boolean initially = true; // if the program is opened for the first time
@@ -209,6 +221,23 @@ public class Controller implements Initializable {
             }
         });
 
+    }
+
+
+    public void openAddModal(){
+        addModal.setVisible(true);
+
+        BoxBlur blur = new BoxBlur();
+        blur.setWidth(10);
+        blur.setHeight(10);
+        blur.setIterations(3);
+
+        landingPage.setEffect(blur);
+    }
+
+    public void closeAddModal(){
+        addModal.setVisible(false);
+        landingPage.setEffect(null);
     }
 
 
