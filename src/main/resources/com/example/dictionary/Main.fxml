@@ -193,6 +193,26 @@
                                     <Insets right="250.0" />
                                  </StackPane.margin>
                               </ImageView>
+                              <ImageView fitHeight="144.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="BOTTOM_LEFT">
+                                 <image>
+                                    <Image url="@../../../images/el.png" />
+                                 </image>
+                                 <StackPane.margin>
+                                    <Insets left="100.0" top="100.0" />
+                                 </StackPane.margin>
+                              </ImageView>
+                              <HBox prefHeight="230.0" prefWidth="1217.0" StackPane.alignment="CENTER">
+                                 <padding>
+                                    <Insets left="150.0" top="20.0" />
+                                 </padding>
+                                 <children>
+                                    <Text fill="#4c4b16" strokeType="OUTSIDE" strokeWidth="0.0" text="You only need to type a word into a search engine to learn its translation!" wrappingWidth="611.03125">
+                                       <font>
+                                          <Font name="Constantia" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
                               <HBox alignment="BOTTOM_LEFT" prefHeight="74.0" prefWidth="600.0" spacing="50.0" style="-fx-background-color: #E7B10A; -fx-background-radius: 100;" StackPane.alignment="BOTTOM_CENTER">
                                  <StackPane.margin>
                                     <Insets left="235.0" right="415.0" top="145.0" />
@@ -219,26 +239,6 @@
                                  <padding>
                                     <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                                  </padding>
-                              </HBox>
-                              <ImageView fitHeight="144.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="BOTTOM_LEFT">
-                                 <image>
-                                    <Image url="@../../../images/el.png" />
-                                 </image>
-                                 <StackPane.margin>
-                                    <Insets left="100.0" top="100.0" />
-                                 </StackPane.margin>
-                              </ImageView>
-                              <HBox prefHeight="230.0" prefWidth="1217.0" StackPane.alignment="CENTER">
-                                 <padding>
-                                    <Insets left="150.0" top="20.0" />
-                                 </padding>
-                                 <children>
-                                    <Text fill="#4c4b16" strokeType="OUTSIDE" strokeWidth="0.0" text="You only need to type a word into a search engine to learn its translation!" wrappingWidth="611.03125">
-                                       <font>
-                                          <Font name="Constantia" size="24.0" />
-                                       </font>
-                                    </Text>
-                                 </children>
                               </HBox>
                            </children>
                         </StackPane>
@@ -274,7 +274,7 @@
                   <Insets left="250.0" top="20.0" />
                </padding>
             </VBox>
-            <VBox fx:id="addModal" alignment="TOP_CENTER" maxHeight="480.0" maxWidth="500.0" prefHeight="480.0" prefWidth="500.0" spacing="15.0" style="-fx-background-color: #FEE8B0; -fx-background-radius: 35;">
+            <VBox fx:id="addModal" alignment="TOP_CENTER" maxHeight="480.0" maxWidth="500.0" prefHeight="480.0" prefWidth="500.0" spacing="15.0" style="-fx-background-color: #FEE8B0; -fx-background-radius: 35;" visible="false">
                <children>
                   <Label text="Add a translation">
                      <font>
