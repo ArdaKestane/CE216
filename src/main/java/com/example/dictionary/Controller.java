@@ -40,6 +40,8 @@ public class Controller implements Initializable {
     private VBox mainVBox;
     @FXML
     private VBox addModal;
+    @FXML
+    private TextField addWord, newTranslation, newSynonym;
 
     
     private boolean initially = true; // if the program is opened for the first time
@@ -238,6 +240,10 @@ public class Controller implements Initializable {
     public void closeAddModal(){
         addModal.setVisible(false);
         landingPage.setEffect(null);
+
+        addWord.clear();
+        newTranslation.clear();
+        newSynonym.clear();
     }
 
 
