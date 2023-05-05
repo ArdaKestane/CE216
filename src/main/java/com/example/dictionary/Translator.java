@@ -1,7 +1,6 @@
 package com.example.dictionary;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -153,6 +152,63 @@ public class Translator {
         }
 
         return translate;
+    }
+
+    public static ArrayList<Synonym> findSynonyms(String word) { //okul
+        ArrayList<Translate> translations = translate(word); //okul'un çevirileri
+        ArrayList<Synonym> synonyms = new ArrayList<>();
+        for(Translate translation : translations) {
+            String srcLan = translation.getSourceLanguage(); // türkçe
+            String tempWord;
+            if (srcLan.equals("English")) {
+                tempWord = translation.getTur().get(0).get(0);
+                ArrayList<Translate> selfTranslations = translate(tempWord); //school'un çevirileri
+                for (Translate st : selfTranslations) {
+                    ArrayList<ArrayList<String>> backTranslations = st.getEng();
+                    synonyms.add(new Synonym(srcLan, word));
+
+                    for (ArrayList<String> bt : backTranslations) {
+                        for (String w : bt) {
+                            if (w.equals(word)) {
+                                Synonym s = synonyms.get(synonyms.size() - 1);
+                                s.setSynonyms(bt);
+                            }
+                        }
+                    }
+                }
+            } else {
+                tempWord = translation.getEng().get(0).get(0); //school
+                ArrayList<Translate> selfTranslations = translate(tempWord); //school'un çevirileri
+                for (Translate st : selfTranslations) {
+                    ArrayList<ArrayList<String>> backTranslations;
+                    synonyms.add(new Synonym(srcLan, word));
+                    switch (srcLan) {
+                        case "Turkish" -> backTranslations = st.getTur();
+                        case "Greek" -> backTranslations = st.getEll();
+                        case "French" -> backTranslations = st.getFra();
+                        case "Italian" -> backTranslations = st.getIta();
+                        case "Swedish" -> backTranslations = st.getSwe();
+                        case "German" -> backTranslations = st.getDeu();
+                        default -> {
+                            backTranslations = new ArrayList<>();
+                            synonyms.remove(synonyms.size() - 1);
+                        }
+                    }
+
+                    for (ArrayList<String> bt : backTranslations) {
+                        for (String w : bt) {
+                            if (w.equals(word)) {
+                                Synonym s = synonyms.get(synonyms.size() - 1);
+                                s.setSynonyms(bt);
+                            }
+
+
+                        }
+                    }
+                }
+            }
+        }
+        return synonyms;
     }
 
 }
