@@ -466,7 +466,7 @@
             </VBox>
             <VBox fx:id="helpSection" prefHeight="200.0" prefWidth="100.0" visible="false">
                <children>
-                  <HBox alignment="CENTER_RIGHT">
+                  <HBox alignment="CENTER">
                      <children>
                         <VBox maxHeight="600.0" maxWidth="829.0" minHeight="600.0" minWidth="829.0" prefHeight="600.0" style="-fx-background-color: #F7F1E5; -fx-background-radius: 25; -fx-border-color: #000000; -fx-border-radius: 25;">
                            <children>
@@ -661,9 +661,6 @@
                            </children>
                         </VBox>
                      </children>
-                     <padding>
-                        <Insets right="100.0" />
-                     </padding>
                   </HBox>
                </children>
             </VBox>
