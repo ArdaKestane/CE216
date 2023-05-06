@@ -22,6 +22,7 @@ public class Controller implements Initializable {
     private VBox landingPage;
     @FXML
     private VBox resultPage;
+
     @FXML
     private TextField searchArea ;
     @FXML
@@ -40,6 +41,13 @@ public class Controller implements Initializable {
     private VBox mainVBox;
     @FXML
     private VBox addModal;
+    @FXML
+    private VBox helpSection;
+    @FXML
+    private VBox helpPage1;
+    @FXML
+    private VBox helpPage2;
+
     @FXML
     private TextField addWord, newTranslation, newSynonym;
 
@@ -244,6 +252,30 @@ public class Controller implements Initializable {
         addWord.clear();
         newTranslation.clear();
         newSynonym.clear();
+    }
+    public void openHelp(){
+        helpSection.setVisible(true);
+
+        BoxBlur blur = new BoxBlur();
+        blur.setWidth(10);
+        blur.setHeight(10);
+        blur.setIterations(3);
+
+        landingPage.setEffect(blur);
+
+    }
+
+    public void closeHelp(){
+        helpSection.setVisible(false);
+        landingPage.setEffect(null);
+    }
+    public void nextHelp(){
+        helpPage1.setVisible(false);
+        helpPage2.setVisible(true);
+    }
+    public void prevHelp(){
+        helpPage1.setVisible(true);
+        helpPage2.setVisible(false);
     }
 
 
