@@ -56,6 +56,8 @@ public class Controller implements Initializable {
     @FXML
     private VBox editModal;
     @FXML
+    private VBox editWordModal;
+    @FXML
     private VBox editResult;
     @FXML
     private VBox helpSection;
@@ -63,8 +65,11 @@ public class Controller implements Initializable {
     private VBox helpPage1;
     @FXML
     private VBox helpPage2;
+    @FXML
+    private TextArea editTextArea;
+    @FXML
+    private Button save;
 
-   
 
     @FXML
     private TextField addWord, newTranslation, newSynonym;
@@ -331,7 +336,7 @@ ArrayList<String> deneme = new ArrayList();
         helpPage2.setVisible(false);
     }
 
-    
+
     public void showEditResults(){
         deneme.clear();
         editResult.getChildren().clear();
@@ -342,20 +347,45 @@ ArrayList<String> deneme = new ArrayList();
         for (String s : deneme) {
             HBox hbox = new HBox();
             hbox.setSpacing(10);
-            hbox.setAlignment(Pos.CENTER_LEFT); 
+            hbox.setAlignment(Pos.CENTER_LEFT);
             HBox.setMargin(hbox, new Insets(0, 0, 10, 0));
             Label label = new Label(s);
-            Button button = new Button();
-            ImageView imageView = new ImageView(new Image(getClass().getResourceAsStream("/images/trash.png")));
-            button.setGraphic(imageView);
-            imageView.setFitWidth(20);
-            imageView.setFitHeight(20);
-            button.setGraphic(imageView);
-            button.setStyle("-fx-background-color: transparent; -fx-padding: 0;");
+            Button deleteButton = new Button();
+            Button editButton = new Button();
+            ImageView deleteImageView = new ImageView(new Image(getClass().getResourceAsStream("/images/trash.png")));
+            ImageView editImageView = new ImageView(new Image(getClass().getResourceAsStream("/images/edit2.png")));
+            deleteButton.setGraphic(deleteImageView);
+            editButton.setGraphic(editImageView);
+            deleteImageView.setFitWidth(20);
+            deleteImageView.setFitHeight(20);
+            editImageView.setFitWidth(20);
+            editImageView.setFitHeight(20);
+            deleteButton.setStyle("-fx-background-color: transparent; -fx-padding: 0;");
+            editButton.setStyle("-fx-background-color: transparent; -fx-padding: 0;");
             Region region = new Region();
-            HBox.setHgrow(region, Priority.ALWAYS); // Push button to the right
-            hbox.getChildren().addAll(label, region, button);
+            HBox.setHgrow(region, Priority.ALWAYS);
+            hbox.getChildren().addAll(label, region, deleteButton, editButton);
             editResult.getChildren().add(hbox);
+
+            deleteButton.setOnAction(event -> {
+                String translation = label.getText();
+                System.out.println(translation + " is deleted");
+                // TODO: Deneme isimli arraylistten silinip, sonra dosya kısmından silinmeli vs
+            });
+
+
+            editButton.setOnAction(event -> {
+                editWordModal.setVisible(true);
+                String translation = label.getText();
+                editTextArea.setText(translation);
+                System.out.println(translation + " is edited");
+                // TODO: Save isimli butona basılınca editTextArea'daki güncellenmiş text önce deneme arrayine oradan da dosya kısmına kayıt edilmeli.
+            });
         }
     }
+
+    public void closeEditWordModal(){
+        editWordModal.setVisible(false);
+    }
+
 }
