@@ -258,7 +258,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="89.0" prefWidth="110.0" style="-fx-background-color: transparent;">
+                        <Button mnemonicParsing="false" onAction="#openEditModal" prefHeight="89.0" prefWidth="110.0" style="-fx-background-color: transparent;">
                            <graphic>
                               <ImageView fitHeight="99.0" fitWidth="109.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -308,8 +308,8 @@
                               <Font name="Constantia" size="15.0" />
                            </font>
                         </Label>
-                        <ChoiceBox focusTraversable="false" prefHeight="25.0" prefWidth="120.0" style="-fx-background-radius: 10;" GridPane.rowIndex="1" />
-                        <ChoiceBox focusTraversable="false" prefHeight="25.0" prefWidth="120.0" style="-fx-background-radius: 10;" stylesheets="@../../../css/choicebox.css" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <ChoiceBox fx:id="addSourceBox" focusTraversable="false" prefHeight="25.0" prefWidth="120.0" style="-fx-background-radius: 10;" GridPane.rowIndex="1" />
+                        <ChoiceBox fx:id="addDstBox" focusTraversable="false" prefHeight="25.0" prefWidth="120.0" style="-fx-background-radius: 10;" stylesheets="@../../../css/choicebox.css" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                         <ImageView fitHeight="30.0" fitWidth="165.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <image>
                               <Image url="@../../../images/ok.png" />
@@ -378,6 +378,91 @@
                <StackPane.margin>
                   <Insets bottom="100.0" left="500.0" right="500.0" top="100.0" />
                </StackPane.margin>
+            </VBox>
+            <VBox fx:id="editModal" alignment="TOP_CENTER" maxHeight="668.0" maxWidth="1021.0" prefHeight="668.0" prefWidth="1021.0" spacing="15.0" style="-fx-background-color: #FEE8B0; -fx-background-radius: 35;" visible="false">
+               <children>
+                  <Label text="Edit translations">
+                     <font>
+                        <Font name="Constantia" size="25.0" />
+                     </font>
+                  </Label>
+                  <Line endX="100.0" startX="-384.0" />
+                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="500.0" prefHeight="23.0" prefWidth="1011.0" style="-fx-background-color: #898121; -fx-background-radius: 150;">
+                     <children>
+                        <TextField fx:id="editSearchField" maxHeight="0.0" prefHeight="25.0" prefWidth="650.0" promptText="absolute" style="-fx-background-color: #898121;" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font name="Constantia" size="30.0" />
+                           </font>
+                        </TextField>
+                        <VBox alignment="CENTER" prefHeight="56.0" prefWidth="64.0">
+                           <children>
+                              <ImageView fitHeight="47.0" fitWidth="40.0" onMouseClicked="#showEditResults" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../images/magnifier.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </VBox>
+                     </children>
+                     <effect>
+                        <DropShadow offsetX="7.0" offsetY="8.0">
+                           <color>
+                              <Color red="0.6313725709915161" green="0.6196078658103943" blue="0.6196078658103943" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                     <padding>
+                        <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="74.0" prefWidth="1011.0" spacing="20.0">
+                     <children>
+                        <ChoiceBox fx:id="editSourceBox" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #E7B10A; -fx-background-radius: 100;" stylesheets="@../../../css/choicebox.css">
+                           <effect>
+                              <DropShadow height="6.25" offsetX="7.0" offsetY="8.0" radius="2.3125" width="5.0">
+                                 <color>
+                                    <Color red="0.6313725709915161" green="0.6196078658103943" blue="0.6196078658103943" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </ChoiceBox>
+                        <ImageView fitHeight="26.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/ok.png" />
+                           </image>
+                        </ImageView>
+                        <ChoiceBox fx:id="editDstBox" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #E7B10A; -fx-background-radius: 100;" stylesheets="@../../../css/choicebox.css">
+                           <effect>
+                              <DropShadow height="6.25" offsetX="7.0" offsetY="8.0" radius="2.3125" width="5.0">
+                                 <color>
+                                    <Color red="0.6313725709915161" green="0.6196078658103943" blue="0.6196078658103943" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </ChoiceBox>
+                     </children>
+                  </HBox>
+                  <VBox fx:id="editResult" alignment="CENTER" prefHeight="401.0" prefWidth="1011.0" VBox.vgrow="ALWAYS">
+                     <padding>
+                        <Insets left="250.0" right="250.0" />
+                     </padding>
+                  </VBox>
+                  <HBox alignment="BOTTOM_RIGHT" prefHeight="50.0" prefWidth="981.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Button focusTraversable="false" mnemonicParsing="false" onAction="#closeEditModal" prefHeight="28.0" prefWidth="59.0" style="-fx-background-radius: 10;" text="Done" textFill="#616161">
+                           <font>
+                              <Font name="Constantia" size="14.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="15.0" right="15.0" top="15.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="15.0" left="5.0" right="5.0" top="15.0" />
+               </padding>
             </VBox>
             <VBox fx:id="helpSection" prefHeight="200.0" prefWidth="100.0" visible="false">
                <padding>

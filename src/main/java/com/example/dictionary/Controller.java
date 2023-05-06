@@ -3,7 +3,14 @@ package com.example.dictionary;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.geometry.Orientation;
+import javafx.geometry.Insets;
+
+
+import javafx.scene.image.ImageView;
+import javafx.scene.image.Image;
 
 
 import javafx.application.Application;
@@ -28,6 +35,8 @@ public class Controller implements Initializable {
     @FXML
     private TextField searchField ;
     @FXML
+    private TextField editSearchField ;
+    @FXML
     private Button translationsButton;
     @FXML
     private Button synonymsButton;
@@ -36,17 +45,32 @@ public class Controller implements Initializable {
     @FXML
     private ChoiceBox<String> sourceBox ;
     @FXML
+    private ChoiceBox<String> editSourceBox ;
+    @FXML
+    private ChoiceBox<String> addSourceBox ;
+    @FXML
     private ChoiceBox<String> dstBox ;
+    @FXML
+    private ChoiceBox<String> editDstBox ;
+    @FXML
+    private ChoiceBox<String> addDstBox ;
+    
     @FXML
     private VBox mainVBox;
     @FXML
     private VBox addModal;
+    @FXML
+    private VBox editModal;
+    @FXML
+    private VBox editResult;
     @FXML
     private VBox helpSection;
     @FXML
     private VBox helpPage1;
     @FXML
     private VBox helpPage2;
+
+   
 
     @FXML
     private TextField addWord, newTranslation, newSynonym;
@@ -205,7 +229,10 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        
+        addSourceBox.getItems().addAll("Turkish","English","German","Greek","French","Italian","Swedish");
+        addDstBox.getItems().addAll("Turkish","English","German","Greek","French","Italian","Swedish");
+        editSourceBox.getItems().addAll("Turkish","English","German","Greek","French","Italian","Swedish");
+        editDstBox.getItems().addAll("Turkish","English","German","Greek","French","Italian","Swedish");
         dstBox.getItems().addAll("Turkish","English","German","Greek","French","Italian","Swedish");
         sourceBox.setValue("Turkish");
         dstBox.setValue("English");
@@ -253,6 +280,27 @@ public class Controller implements Initializable {
         newTranslation.clear();
         newSynonym.clear();
     }
+
+    public void openEditModal(){
+        editModal.setVisible(true);
+
+        BoxBlur blur = new BoxBlur();
+        blur.setWidth(10);
+        blur.setHeight(10);
+        blur.setIterations(3);
+
+        landingPage.setEffect(blur);
+    }
+
+    public void closeEditModal(){
+        editModal.setVisible(false);
+        landingPage.setEffect(null);
+
+        /* addWord.clear();
+        newTranslation.clear();
+        newSynonym.clear();
+        */
+    }
     public void openHelp(){
         helpSection.setVisible(true);
 
@@ -278,6 +326,38 @@ public class Controller implements Initializable {
         helpPage2.setVisible(false);
     }
 
+    
 
 
+
+
+
+    public void showEditResults(){
+        String[] results = {"a", "1. ingiliz alfabesinin ilk harfi", "2. birinci kalite veya derece", "(müz.) la notası, la perdesi", "(A.B.D.) en yüksek not."};
+        for (String result : results) {
+            HBox hbox = new HBox();
+            hbox.setSpacing(10);
+            HBox.setMargin(hbox, new Insets(0, 0, 10, 0));
+            Label label = new Label(result);
+            Button button = new Button();
+            ImageView imageView = new ImageView(new Image(getClass().getResourceAsStream("/images/trash.png")));
+            button.setGraphic(imageView);
+            imageView.setFitWidth(20);
+            imageView.setFitHeight(20);
+            button.setGraphic(imageView);
+            button.setStyle("-fx-background-color: transparent; -fx-padding: 0;");
+
+            VBox vbox = new VBox();
+            Separator separator = new Separator();
+            separator.setPrefWidth(50);
+            separator.setStyle("-fx-background-color: black;");
+            vbox.getChildren().addAll(hbox,separator);
+            VBox.setMargin(separator, new Insets(10, 0, 10, 0));
+
+            hbox.getChildren().addAll(label, button);
+            editResult.getChildren().add(vbox);
+        }
+
+        
+    }
 }
