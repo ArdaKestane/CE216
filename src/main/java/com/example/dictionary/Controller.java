@@ -2,23 +2,16 @@ package com.example.dictionary;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.geometry.Orientation;
 import javafx.geometry.Insets;
-
-
-import javafx.scene.image.ImageView;
-import javafx.scene.image.Image;
-
-
-import javafx.application.Application;
-import javafx.scene.Scene;
+import javafx.geometry.Pos;
+import javafx.scene.control.*;
 import javafx.scene.effect.BoxBlur;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -327,16 +320,12 @@ public class Controller implements Initializable {
     }
 
     
-
-
-
-
-
     public void showEditResults(){
         String[] results = {"a", "1. ingiliz alfabesinin ilk harfi", "2. birinci kalite veya derece", "(müz.) la notası, la perdesi", "(A.B.D.) en yüksek not."};
         for (String result : results) {
             HBox hbox = new HBox();
             hbox.setSpacing(10);
+            hbox.setAlignment(Pos.CENTER_LEFT); 
             HBox.setMargin(hbox, new Insets(0, 0, 10, 0));
             Label label = new Label(result);
             Button button = new Button();
@@ -346,18 +335,10 @@ public class Controller implements Initializable {
             imageView.setFitHeight(20);
             button.setGraphic(imageView);
             button.setStyle("-fx-background-color: transparent; -fx-padding: 0;");
-
-            VBox vbox = new VBox();
-            Separator separator = new Separator();
-            separator.setPrefWidth(50);
-            separator.setStyle("-fx-background-color: black;");
-            vbox.getChildren().addAll(hbox,separator);
-            VBox.setMargin(separator, new Insets(10, 0, 10, 0));
-
-            hbox.getChildren().addAll(label, button);
-            editResult.getChildren().add(vbox);
+            Region region = new Region();
+            HBox.setHgrow(region, Priority.ALWAYS); // Push button to the right
+            hbox.getChildren().addAll(label, region, button);
+            editResult.getChildren().add(hbox);
         }
-
-        
     }
 }
