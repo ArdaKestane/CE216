@@ -36,11 +36,11 @@ public class App extends Application {
         }
          */
 
-        /* ArrayList<Synonym> synms = Translator.findSynonyms("bottom");
+        ArrayList<Synonym> synms = Translator.findSynonyms("bottom");
         for(Synonym s : synms) {
-            System.out.println(s.getWord() + " : " + s.getSynonyms());
+            System.out.println(s.getWord() + " : " + s.getSynonyms() + " : " +  s.getSourceLanguage());
         }
-        */
+
 
         launch();
     }

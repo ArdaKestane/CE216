@@ -1403,6 +1403,8 @@ ok
 1. arrow
 oksijen
 1. oxygen
+okul
+1. school
 okumak
 1. read
 olay

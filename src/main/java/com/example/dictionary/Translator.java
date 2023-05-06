@@ -163,9 +163,15 @@ public class Translator {
             if (srcLan.equals("English")) {
                 tempWord = translation.getTur().get(0).get(0);
                 ArrayList<Translate> selfTranslations = translate(tempWord); //school'un çevirileri
+                ArrayList<ArrayList<String>> backTranslations;
                 for (Translate st : selfTranslations) {
-                    ArrayList<ArrayList<String>> backTranslations = st.getEng() != null ? st.getEng()  : new ArrayList<>();
-                    synonyms.add(new Synonym(srcLan, word));
+                    if(st.getSourceLanguage().equals("Turkish")) {
+                        backTranslations = st.getEng() != null ? st.getEng()  : new ArrayList<>();
+                        synonyms.add(new Synonym(srcLan, word));
+                    }
+                    else
+                        backTranslations = new ArrayList<>();
+
 
                     for (ArrayList<String> bt : backTranslations) {
                         for (String w : bt) {

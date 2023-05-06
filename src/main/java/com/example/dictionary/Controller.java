@@ -145,6 +145,48 @@ public class Controller implements Initializable {
 
     public void showSynonyms(){
         wordList.getItems().removeAll();
+        String word = searchField.getText().trim().toLowerCase();
+        showSynonyms(word);
+
+
+    }
+
+    public void showSynonyms(String word) {
+        wordList.getItems().clear();
+        ArrayList<Synonym> synonyms = Translator.findSynonyms(word);
+        ArrayList<String> temp = null;
+        Synonym s = null;
+        if (synonyms.isEmpty())
+            return;
+
+        String srcLng =  sourceBox.getValue();
+
+        if (synonyms.isEmpty())
+            return;
+
+        else if (initially) {
+            s = synonyms.get(0);
+            initially = false;
+        }
+
+        else {
+            for(Synonym synm : synonyms)
+                if(synm.getSourceLanguage().equals(srcLng))
+                    s = synm;
+        }
+
+        if(s == null)
+            return;
+
+        temp = s.getSynonyms();
+
+        if(temp == null)
+            return;
+
+        else {
+            for(String str : temp)
+                wordList.getItems().add(str);
+        }
 
 
     }
