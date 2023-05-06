@@ -20,7 +20,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox fx:id="mainVBox" alignment="TOP_CENTER" minHeight="800.0" minWidth="1500.0" prefHeight="800.0" prefWidth="1500.0" spacing="20.0" style="-fx-background-color: #F7F1E5;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dictionary.Controller">
+<VBox fx:id="mainVBox" alignment="TOP_CENTER" minHeight="800.0" minWidth="1500.0" prefHeight="800.0" prefWidth="1500.0" spacing="20.0" style="-fx-background-color: #F7F1E5;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dictionary.Controller">
    <children>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
@@ -469,7 +469,7 @@
                   <Insets left="500.0" right="100.0" />
                </padding>
                <children>
-                  <VBox prefHeight="600.0" prefWidth="100.0" style="-fx-background-color: #F7F1E5; -fx-background-radius: 25; -fx-border-color: #000000; -fx-border-radius: 25;">
+                  <VBox maxHeight="600.0" maxWidth="829.0" minHeight="600.0" minWidth="829.0" prefHeight="600.0" style="-fx-background-color: #F7F1E5; -fx-background-radius: 25; -fx-border-color: #000000; -fx-border-radius: 25;">
                      <children>
                         <HBox alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="200.0">
                            <children>
@@ -537,7 +537,7 @@
                                                 </Text>
                                              </children>
                                              <padding>
-                                                <Insets left="20.0" top="10.0" />
+                                                <Insets left="20.0" right="10.0" top="10.0" />
                                              </padding>
                                           </VBox>
                                        </children>
