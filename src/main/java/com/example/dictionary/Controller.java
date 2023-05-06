@@ -13,6 +13,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
+import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -96,7 +97,7 @@ public class Controller implements Initializable {
         if(searchedWord.equals(""))
             return ;
         searchField.setText(searchedWord);
-        showTranslations(searchedWord);
+        showTranslations(searchedWord,true);
 
         landingPage.setVisible(false);
         resultPage.setVisible(true);
@@ -120,7 +121,7 @@ public class Controller implements Initializable {
         if(searchedWord.equals(""))
             return ;
         searchField.setText(searchedWord);
-        showTranslations(searchedWord);
+        showTranslations(searchedWord,true);
 
         ArrayList<Translate> translationList = Translator.translate(searchedWord);
         sourceBox.getItems().clear();
@@ -142,13 +143,21 @@ public class Controller implements Initializable {
 
 
     }
-    public int showTranslations(String word){
+    public int showTranslations(String word, boolean bool){
         wordList.getItems().clear();
         ArrayList<Translate> translationList = Translator.translate(word);
         
         ArrayList<ArrayList<String>> temp = null;
-        String dstLng = dstBox.getValue() == null ? "English" : dstBox.getValue() ;
-        String srcLng = sourceBox.getValue() == null ? "Turkish" : sourceBox.getValue() ;
+        String srcLng = "";
+        String dstLng = "";
+        if(bool == true) {
+            dstLng = dstBox.getValue() == null ? "English" : dstBox.getValue();
+            srcLng = sourceBox.getValue() == null ? "Turkish" : sourceBox.getValue();
+        }
+        else {
+            dstLng = editDstBox.getValue() == null ? "English" : editDstBox.getValue();
+            srcLng = editSourceBox.getValue() == null ? "Turkish" : editSourceBox.getValue();
+        }
         Translate t  = null;
         if(translationList.size()==0){
             System.out.println("TranslationList is empty");
@@ -210,7 +219,10 @@ public class Controller implements Initializable {
             }
             String line = tempS.toString() ;
             System.out.println(line);
-            wordList.getItems().add(line);
+            if (bool ==true)
+                wordList.getItems().add(line);
+            else
+                deneme.add(line);
         }
         sourceBox.setValue(t.getSourceLanguage());
         dstBox.setValue(dstLng);
@@ -219,7 +231,7 @@ public class Controller implements Initializable {
 
     }
 
-
+ArrayList<String> deneme = new ArrayList();
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         addSourceBox.getItems().addAll("Turkish","English","German","Greek","French","Italian","Swedish");
@@ -239,15 +251,15 @@ public class Controller implements Initializable {
                 searchFromLanding();
             }
         });
-        translationsButton.setOnAction(event -> showTranslations(searchField.getText()));
+        translationsButton.setOnAction(event -> showTranslations(searchField.getText(),true));
         synonymsButton.setOnAction(event -> showSynonyms());
-        dstBox.setOnAction(event -> showTranslations(searchField.getText()));
-        sourceBox.setOnAction(event -> showTranslations(searchField.getText()));
+        dstBox.setOnAction(event -> showTranslations(searchField.getText(),true));
+        sourceBox.setOnAction(event -> showTranslations(searchField.getText(),true));
         wordList.setOnMouseClicked(event -> {
             if(event.getClickCount() == 2){
                 String selectedWord = wordList.getSelectionModel().getSelectedItem();
                 searchField.setText(selectedWord);
-                showTranslations(selectedWord);
+                showTranslations(selectedWord,true);
             }
         });
 
@@ -321,13 +333,18 @@ public class Controller implements Initializable {
 
     
     public void showEditResults(){
-        String[] results = {"a", "1. ingiliz alfabesinin ilk harfi", "2. birinci kalite veya derece", "(müz.) la notası, la perdesi", "(A.B.D.) en yüksek not."};
-        for (String result : results) {
+        deneme.clear();
+        editResult.getChildren().clear();
+        String word = editSearchField.getText();
+        ArrayList<Translate> result = Translator.translate(word);
+        showTranslations(word, false);
+
+        for (String s : deneme) {
             HBox hbox = new HBox();
             hbox.setSpacing(10);
             hbox.setAlignment(Pos.CENTER_LEFT); 
             HBox.setMargin(hbox, new Insets(0, 0, 10, 0));
-            Label label = new Label(result);
+            Label label = new Label(s);
             Button button = new Button();
             ImageView imageView = new ImageView(new Image(getClass().getResourceAsStream("/images/trash.png")));
             button.setGraphic(imageView);
