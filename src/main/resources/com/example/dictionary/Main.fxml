@@ -379,7 +379,7 @@
                   <Insets bottom="100.0" left="500.0" right="500.0" top="100.0" />
                </StackPane.margin>
             </VBox>
-            <VBox fx:id="helpSection" prefHeight="200.0" prefWidth="100.0">
+            <VBox fx:id="helpSection" prefHeight="200.0" prefWidth="100.0" visible="false">
                <padding>
                   <Insets left="500.0" right="100.0" />
                </padding>
