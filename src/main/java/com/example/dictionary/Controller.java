@@ -421,8 +421,8 @@ ArrayList<String> deneme = new ArrayList<>();
                 String fileName = "eng-" + languageToFile(dstLang) + ".txt";
                 URL url = Controller.class.getResource("/translations/" + fileName);
                 File file = new File(url.toURI());
-                FileWriter fw = new FileWriter(file, true);
-                try (BufferedWriter bw = new BufferedWriter(fw)) {
+                FileOutputStream fos = new FileOutputStream(file, true);
+                try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos, StandardCharsets.UTF_8))) {
                     if (isFirstTime) {
                         bw.write(word);
                         bw.newLine();
