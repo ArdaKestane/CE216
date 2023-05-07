@@ -21,7 +21,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox fx:id="mainVBox" alignment="TOP_CENTER" minHeight="800.0" minWidth="1500.0" prefHeight="800.0" prefWidth="1500.0" spacing="20.0" style="-fx-background-color: #F7F1E5;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dictionary.Controller">
+<VBox fx:id="mainVBox" alignment="TOP_CENTER" minHeight="800.0" minWidth="1500.0" prefHeight="800.0" prefWidth="1500.0" spacing="20.0" style="-fx-background-color: #F7F1E5;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dictionary.Controller">
    <children>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
@@ -450,7 +450,7 @@
                   </VBox>
                   <HBox alignment="BOTTOM_RIGHT" prefHeight="50.0" prefWidth="981.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Button focusTraversable="false" mnemonicParsing="false" onAction="#closeEditModal" prefHeight="28.0" prefWidth="59.0" style="-fx-background-radius: 10;" text="Done" textFill="#616161">
+                        <Button fx:id="editDone" focusTraversable="false" mnemonicParsing="false" onAction="#closeEditModal" prefHeight="28.0" prefWidth="59.0" style="-fx-background-radius: 10;" text="Done" textFill="#616161">
                            <font>
                               <Font name="Constantia" size="14.0" />
                            </font>
@@ -684,7 +684,7 @@
                   </VBox>
                   <HBox alignment="BOTTOM_RIGHT" prefHeight="50.0" prefWidth="490.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Button fx:id="save" focusTraversable="false" mnemonicParsing="false" onAction="#closeEditWordModal" prefHeight="28.0" prefWidth="59.0" style="-fx-background-radius: 15;" text="Save" textFill="#797979">
+                        <Button fx:id="save" focusTraversable="false" mnemonicParsing="false" prefHeight="28.0" prefWidth="59.0" style="-fx-background-radius: 15;" text="Save" textFill="#797979">
                            <font>
                               <Font name="Constantia" size="15.0" />
                            </font>

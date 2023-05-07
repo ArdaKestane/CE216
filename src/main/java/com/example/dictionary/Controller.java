@@ -23,7 +23,9 @@ import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
 
+    private Label editLabel;
     private ArrayList<Translation> translations = Translator.translations;
+    private ArrayList<String> editList = new ArrayList<>();
     private Translation translation;
     private int index = 0;
     private String line = "";
@@ -31,6 +33,9 @@ public class Controller implements Initializable {
     private String srcLang = "";
     private String dstLang = "";
     private ArrayList<String> lineList = new ArrayList<>();
+
+    @FXML
+    private Button editDone;
 
     @FXML
     private VBox landingPage;
@@ -334,7 +339,7 @@ public class Controller implements Initializable {
             if (bool)
                 wordList.getItems().add(line);
             else
-                deneme.add(line);
+                editList.add(line);
         }
         sourceBox.setValue(t.getSourceLanguage());
         dstBox.setValue(dstLng);
@@ -343,7 +348,6 @@ public class Controller implements Initializable {
 
     }
 
-ArrayList<String> deneme = new ArrayList<>();
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         addSourceBox.getItems().addAll("Turkish","English","German","Greek","French","Italian","Swedish");
@@ -519,13 +523,13 @@ ArrayList<String> deneme = new ArrayList<>();
 
 
     public void showEditResults(){
-        deneme.clear();
+        editList.clear();
         editResult.getChildren().clear();
         String word = editSearchField.getText();
         ArrayList<Translate> result = Translator.translate(word, translations);
         showTranslations(word, false);
 
-        for (String s : deneme) {
+        for (String s : editList) {
             HBox hbox = new HBox();
             hbox.setSpacing(10);
             hbox.setAlignment(Pos.CENTER_LEFT);
@@ -548,25 +552,44 @@ ArrayList<String> deneme = new ArrayList<>();
             hbox.getChildren().addAll(label, region, deleteButton, editButton);
             editResult.getChildren().add(hbox);
 
+
             deleteButton.setOnAction(event -> {
                 String translation = label.getText();
                 System.out.println(translation + " is deleted");
-                // TODO: Deneme isimli arraylistten silinip, sonra dosya kısmından silinmeli vs
-            });
+                editResult.getChildren().remove(hbox);
+                editList.remove(s);
+                System.out.println(editList);
 
+            });
 
             editButton.setOnAction(event -> {
                 editWordModal.setVisible(true);
                 String translation = label.getText();
                 editTextArea.setText(translation);
                 System.out.println(translation + " is edited");
-                // TODO: Save isimli butona basılınca editTextArea'daki güncellenmiş text önce deneme arrayine oradan da dosya kısmına kayıt edilmeli.
+                editLabel = label;
+
             });
         }
+
+        save.setOnAction(event -> {
+            String editedStr = editTextArea.getText();
+            String oldStr = editLabel.getText();
+            editLabel.setText(editedStr);
+            editWordModal.setVisible(false);
+            int index = -1;
+            for(int i = 0 ; i < editList.size() ; i++)
+                if(editList.get(i).equals(oldStr))
+                    index = i;
+
+            editList.set(index, editedStr);
+            System.out.println(editList);
+        });
+
+        editDone.setOnAction(event -> {
+
+        });
     }
 
-    public void closeEditWordModal(){
-        editWordModal.setVisible(false);
-    }
 
 }
