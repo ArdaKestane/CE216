@@ -436,69 +436,13 @@ ArrayList<String> deneme = new ArrayList<>();
                 }
 
             } else {
-                if (srcLang.equals("Turkish") && dstLang.equals("German")) {
+                String srcFileName = languageToFile(srcLang); //deu
+                String dstFileName = languageToFile(dstLang); //tur
+                String fileName1 = srcFileName + "-eng.txt";
+                String fileName2 = "eng-" + dstFileName + ".txt";
 
-                } else if (srcLang.equals("Turkish") && dstLang.equals("Greek")) {
+                // TODO : Implement writing to file
 
-                } else if (srcLang.equals("Turkish") && dstLang.equals("French")) {
-
-                }
-                else if (srcLang.equals("Turkish") && dstLang.equals("Italian")) {
-
-                }
-                else if (srcLang.equals("Turkish") && dstLang.equals("Swedish")) {
-
-                } else if (srcLang.equals("German") && dstLang.equals("Greek")) {
-
-                } else if (srcLang.equals("German") && dstLang.equals("French")) {
-
-                } else if (srcLang.equals("German") && dstLang.equals("Italian")) {
-
-                } else if (srcLang.equals("German") && dstLang.equals("Swedish")) {
-
-                } else if (srcLang.equals("German") && dstLang.equals("Turkish")) {
-
-                } else if (srcLang.equals("Greek") && dstLang.equals("German")) {
-
-                } else if (srcLang.equals("Greek") && dstLang.equals("French")) {
-
-                } else if (srcLang.equals("Greek") && dstLang.equals("Italian")) {
-
-                } else if (srcLang.equals("Greek") && dstLang.equals("Swedish")) {
-
-                } else if (srcLang.equals("Greek") && dstLang.equals("Turkish")) {
-
-                } else if (srcLang.equals("French") && dstLang.equals("German")) {
-
-                } else if (srcLang.equals("French") && dstLang.equals("Greek")) {
-
-                } else if (srcLang.equals("French") && dstLang.equals("Italian")) {
-
-                } else if (srcLang.equals("French") && dstLang.equals("Turkish")) {
-
-                } else if (srcLang.equals("French") && dstLang.equals("Swedish")) {
-
-                } else if (srcLang.equals("Italian") && dstLang.equals("German")) {
-
-                } else if (srcLang.equals("Italian") && dstLang.equals("Greek")) {
-
-                } else if (srcLang.equals("Italian") && dstLang.equals("Turkish")) {
-
-                } else if (srcLang.equals("Italian") && dstLang.equals("Swedish")) {
-
-                } else if (srcLang.equals("Italian") && dstLang.equals("French")) {
-
-                } else if (srcLang.equals("Swedish") && dstLang.equals("German")) {
-
-                } else if (srcLang.equals("Swedish") && dstLang.equals("Greek")) {
-
-                } else if (srcLang.equals("Swedish") && dstLang.equals("French")) {
-
-                } else if (srcLang.equals("Swedish") && dstLang.equals("Italian")) {
-
-                } else if (srcLang.equals("Swedish") && dstLang.equals("Turkish")) {
-
-                }
             }
 
         }
