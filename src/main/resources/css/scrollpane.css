@@ -1,0 +1,19 @@
+/* Disable the horizontal scrollbar */
+.scroll-pane .scroll-bar:horizontal {
+    -fx-pref-height: 0px;
+    -fx-min-height: 0px;
+    -fx-max-height: 0px;
+}
+
+/* Make the edges/borders transparent */
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0px;
+    -fx-padding: 0px;
+    -fx-border-width: 0px;
+    -fx-hbar-policy: never;
+}

@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
@@ -443,11 +444,15 @@
                         </ChoiceBox>
                      </children>
                   </HBox>
-                  <VBox fx:id="editResult" alignment="CENTER" prefHeight="401.0" prefWidth="1011.0" VBox.vgrow="ALWAYS">
-                     <padding>
-                        <Insets left="250.0" right="250.0" />
-                     </padding>
-                  </VBox>
+                  <ScrollPane stylesheets="@../../../css/scrollpane.css">
+                     <content>
+                        <VBox fx:id="editResult" alignment="CENTER" prefHeight="401.0" prefWidth="1011.0">
+                           <padding>
+                              <Insets left="250.0" right="250.0" />
+                           </padding>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
                   <HBox alignment="BOTTOM_RIGHT" prefHeight="50.0" prefWidth="981.0" VBox.vgrow="ALWAYS">
                      <children>
                         <Button fx:id="editDone" focusTraversable="false" mnemonicParsing="false" onAction="#closeEditModal" prefHeight="28.0" prefWidth="59.0" style="-fx-background-radius: 10;" text="Done" textFill="#616161">

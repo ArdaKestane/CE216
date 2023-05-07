@@ -587,7 +587,8 @@ public class Controller implements Initializable {
         });
 
         editDone.setOnAction(event -> {
-
+            editModal.setVisible(false);
+            landingPage.setEffect(null);
         });
     }
 
