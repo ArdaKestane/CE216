@@ -98,7 +98,8 @@ public class Translator {
         for(Translation translation : translations) {
             Collection<String> sourceWords = translation.getAllWords();
             for (String w : sourceWords) {
-                if(w.toLowerCase().equals(word)) {
+                if(w.toLowerCase().equals(word) || w.equals(word + "##")) {
+
                     String sourceLanguage = translation.getSourceLanguage();
                     if(isEnglishFound && sourceLanguage.equals("English"))
                         continue;
@@ -124,8 +125,8 @@ public class Translator {
                         } else {
                             for (Translation tra : translations) {
                                 if (tra.getSourceLanguage().equals(sourceLanguage) && tra.getDestinationLanguage().equals("English")) {
-                                    t.setEng(tra.getTranslations(w));
-                                    String engTra = tra.getTranslations(w).get(0).get(0);
+                                    t.setEng(tra.getTranslations(w.toLowerCase()));
+                                    String engTra = tra.getTranslations(w.toLowerCase()).get(0).get(0).toLowerCase();
                                     for (Translation tra2 : translations) {
                                         if(tra2.getDestinationLanguage().equals(sourceLanguage))
                                             continue;
@@ -150,6 +151,91 @@ public class Translator {
                 }
 
             }
+        }
+
+        word = word + "##";
+        String srcLan = "";
+        ArrayList<ArrayList<String>> deu;
+        ArrayList<ArrayList<String>> ell;
+        ArrayList<ArrayList<String>> fra;
+        ArrayList<ArrayList<String>> swe;
+        ArrayList<ArrayList<String>> ita;
+        ArrayList<ArrayList<String>> tur;
+        for(Translate trs : translate) {
+        if(trs.getSourceWord().toLowerCase().equals(word)) {
+            srcLan = trs.getSourceLanguage();
+            if(srcLan.equals("English")) {
+                deu = trs.getDeu();
+                ell = trs.getEll();
+                fra = trs.getFra();
+                swe = trs.getSwe();
+                ita = trs.getIta();
+                tur = trs.getTur();
+
+                if(deu != null) {
+                    for (Translate trs2 : translate) {
+                        if(trs2.getSourceWord().toLowerCase().equals(word) && !trs2.getSourceLanguage().equals("English")) {
+                            trs2.setDeu(deu);
+                            trs2.setEng(null);
+                        }
+
+                    }
+                }
+
+                else if(ell != null) {
+                    for (Translate trs2 : translate) {
+                        if(trs2.getSourceWord().toLowerCase().equals(word) && !trs2.getSourceLanguage().equals("English")) {
+                            trs2.setEll(ell);
+                            trs2.setEng(null);
+                        }
+
+                    }
+                }
+
+                else if(fra != null) {
+                    for (Translate trs2 : translate) {
+                        if(trs2.getSourceWord().toLowerCase().equals(word) && !trs2.getSourceLanguage().equals("English")) {
+                            trs2.setFra(fra);
+                            trs2.setEng(null);
+                        }
+                    }
+                }
+
+                else if(swe != null) {
+                    for (Translate trs2 : translate) {
+                        if(trs2.getSourceWord().toLowerCase().equals(word) && !trs2.getSourceLanguage().equals("English")) {
+                            trs2.setSwe(swe);
+                            trs2.setEng(null);
+                        }
+
+                    }
+                }
+
+                else if(tur != null) {
+                    for (Translate trs2 : translate) {
+                        if(trs2.getSourceWord().toLowerCase().equals(word) && !trs2.getSourceLanguage().equals("English")) {
+                            trs2.setTur(tur);
+                            trs2.setEng(null);
+                        }
+
+                    }
+                }
+
+                else if(ita != null) {
+                    for (Translate trs2 : translate) {
+                        if(trs2.getSourceWord().toLowerCase().equals(word) && !trs2.getSourceLanguage().equals("English")) {
+                            trs2.setIta(ita);
+                            trs2.setEng(null);
+                        }
+
+                    }
+                }
+
+                translate.remove(trs);
+
+            }
+        }
+
         }
 
         return translate;

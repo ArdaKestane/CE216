@@ -401,8 +401,9 @@ public class Controller implements Initializable {
         newSynonym.clear();
 
         addWord.setEditable(true);
-
+        boolean isContainEng = false;
         boolean isFirstTime = true;
+        boolean isSecondFile = true;
         for (String line : lineList) {
             if (dstLang.equals("English")) {
                 String fileName = languageToFile(srcLang) + "-eng.txt";
@@ -411,7 +412,7 @@ public class Controller implements Initializable {
                 try (FileWriter fw = new FileWriter(file, true);
                      BufferedWriter bw = new BufferedWriter(fw)) {
                     if (isFirstTime) {
-                        bw.write(word);
+                        bw.write(word.toLowerCase());
                         bw.newLine();
                     }
                     bw.write(line);
@@ -422,13 +423,14 @@ public class Controller implements Initializable {
                 } catch (IOException e) {
                     System.err.println("Error appending to " + fileName + ": " + e.getMessage());
                 }
+                isContainEng = true;
             } else if (srcLang.equals("English")) {
                 String fileName = "eng-" + languageToFile(dstLang) + ".txt";
                 File file = new File("src/main/resources/translations/" + fileName);
                 try (FileWriter fw = new FileWriter(file, true);
                      BufferedWriter bw = new BufferedWriter(fw)) {
                     if (isFirstTime) {
-                        bw.write(word);
+                        bw.write(word.toLowerCase());
                         bw.newLine();
                     }
                     bw.write(line);
@@ -439,16 +441,48 @@ public class Controller implements Initializable {
                 } catch (IOException e) {
                     System.err.println("Error appending to " + fileName + ": " + e.getMessage());
                 }
+
+                isContainEng = true;
             }
-
-
             else {
                 String srcFileName = languageToFile(srcLang); //deu
                 String dstFileName = languageToFile(dstLang); //tur
                 String fileName1 = srcFileName + "-eng.txt";
                 String fileName2 = "eng-" + dstFileName + ".txt";
 
-                // TODO : Implement writing to file
+                File file1 = new File("src/main/resources/translations/" + fileName1);
+                File file2 = new File("src/main/resources/translations/" + fileName2);
+
+                try (FileWriter fw = new FileWriter(file1, true);
+                     BufferedWriter bw = new BufferedWriter(fw)) {
+                    if (isFirstTime) {
+                        bw.write(word.toLowerCase() + "##");
+                        bw.newLine();
+                    }
+                    bw.write(line.substring(0,3) + word.toLowerCase());
+                    bw.newLine();
+                    isFirstTime = false;
+                    bw.flush();
+                    System.out.println("Content appended to " + fileName1);
+                } catch (IOException e) {
+                    System.err.println("Error appending to " + fileName1 + ": " + e.getMessage());
+                }
+
+                try (FileWriter fw = new FileWriter(file2, true);
+                     BufferedWriter bw = new BufferedWriter(fw)) {
+                    if (isSecondFile) {
+                        bw.write(word.toLowerCase() + "##");
+                        bw.newLine();
+                        isSecondFile = false;
+                    }
+                    bw.write(line);
+                    bw.newLine();
+                    isFirstTime = false;
+                    bw.flush();
+                    System.out.println("Content appended to " + fileName2);
+                } catch (IOException e) {
+                    System.err.println("Error appending to " + fileName2 + ": " + e.getMessage());
+                }
 
             }
 
@@ -458,17 +492,33 @@ public class Controller implements Initializable {
             translation.addTranslation(word, l);
             System.out.println(l);
         }  // File durumu bunda da var incelenmesi lazım
-
-        for(Translation t : translations) {
-            if(t.getSourceLanguage().equals(srcLang) && t.getDestinationLanguage().equals(dstLang)) {
+        if(isContainEng) {
+        for (Translation t : translations) {
+            if (t.getSourceLanguage().equals(srcLang) && t.getDestinationLanguage().equals(dstLang)) {
                 t.addSourceWord(word);
+                for (String s : lineList)
+                    t.addTranslation(word, s);
+            }
+        }
+    }
+
+    else {
+        for(Translation t : translations) {
+            if(t.getSourceLanguage().equals(srcLang) && t.getDestinationLanguage().equals("English")) {
+                t.addSourceWord(word + "##");
                 for(String s : lineList)
-                    t.addTranslation(word,s);
+                    t.addTranslation(word + "##", word);
             }
         }
 
-
-
+        for(Translation t : translations) {
+            if(t.getSourceLanguage().equals("English") && t.getDestinationLanguage().equals(dstLang)) {
+                t.addSourceWord(word + "##");
+                for(String s : lineList)
+                    t.addTranslation(word + "##",s.substring(4));
+            }
+        }
+    }
 
         index = 0;
         line = "";
