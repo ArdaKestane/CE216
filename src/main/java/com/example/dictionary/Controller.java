@@ -648,6 +648,14 @@ public class Controller implements Initializable {
 
             if(editSrcLan.equals("English") || editDstLan.equals("English")) {
                 String fileName = languageToFile(editSrcLan) + "-" + languageToFile(editDstLan) + ".txt";
+                for(Translation trns : translations) {
+                    if(trns.getSourceLanguage().equals(editSrcLan) && trns.getDestinationLanguage().equals(editDstLan)) {
+                        trns.removeTranslation(word);
+                        for(String s : editList) {
+                            trns.addTranslation(word, s);
+                        }
+                    }
+                }
                 try {
                     URL url = Controller.class.getResource("/translations/" + fileName);
                     BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream(), StandardCharsets.UTF_8));
@@ -671,6 +679,8 @@ public class Controller implements Initializable {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+
+            } else {
 
             }
 

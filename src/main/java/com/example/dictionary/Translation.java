@@ -36,6 +36,10 @@ public class Translation {
         translations.add(synonyms);
     }
 
+    public void removeTranslation(String word) {
+        words.put(word, new ArrayList<>());
+    }
+
     public Collection<String> getAllWords() {
         return words.keySet();
     }
