@@ -401,10 +401,10 @@ ArrayList<String> deneme = new ArrayList<>();
         for (String line : lineList) {
             if (dstLang.equals("English")) {
                 String fileName = languageToFile(srcLang) + "-eng.txt";
-                URL url = Controller.class.getResource("/translations/" + fileName);
-                File file = new File(url.toURI());
-                FileOutputStream fos = new FileOutputStream(file, true);
-                try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos, StandardCharsets.UTF_8))) {
+                InputStream inputStream = getClass().getClassLoader().getResourceAsStream("translations/" + fileName);
+                File file = new File("src/main/resources/translations/" + fileName);
+                try (FileWriter fw = new FileWriter(file, true);
+                     BufferedWriter bw = new BufferedWriter(fw)) {
                     if (isFirstTime) {
                         bw.write(word);
                         bw.newLine();
@@ -412,17 +412,16 @@ ArrayList<String> deneme = new ArrayList<>();
                     bw.write(line);
                     bw.newLine();
                     isFirstTime = false;
+                    bw.flush();
                     System.out.println("Content appended to " + fileName);
                 } catch (IOException e) {
                     System.err.println("Error appending to " + fileName + ": " + e.getMessage());
                 }
-
             } else if (srcLang.equals("English")) {
                 String fileName = "eng-" + languageToFile(dstLang) + ".txt";
-                URL url = Controller.class.getResource("/translations/" + fileName);
-                File file = new File(url.toURI());
-                FileOutputStream fos = new FileOutputStream(file, true);
-                try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos, StandardCharsets.UTF_8))) {
+                File file = new File("src/main/resources/translations/" + fileName);
+                try (FileWriter fw = new FileWriter(file, true);
+                     BufferedWriter bw = new BufferedWriter(fw)) {
                     if (isFirstTime) {
                         bw.write(word);
                         bw.newLine();
@@ -430,12 +429,15 @@ ArrayList<String> deneme = new ArrayList<>();
                     bw.write(line);
                     bw.newLine();
                     isFirstTime = false;
+                    bw.flush();
                     System.out.println("Content appended to " + fileName);
                 } catch (IOException e) {
                     System.err.println("Error appending to " + fileName + ": " + e.getMessage());
                 }
+            }
 
-            } else {
+
+            else {
                 String srcFileName = languageToFile(srcLang); //deu
                 String dstFileName = languageToFile(dstLang); //tur
                 String fileName1 = srcFileName + "-eng.txt";
@@ -451,6 +453,12 @@ ArrayList<String> deneme = new ArrayList<>();
             translation.addTranslation(word, l);
             System.out.println(l);
         }  // File durumu bunda da var incelenmesi lazım
+
+        for(Translation t : Translator.translations) {
+            if(t.getSourceLanguage().equals(srcLang) && t.getDestinationLanguage().equals(dstLang))
+                for(String s : lineList)
+                    t.addTranslation(word, s);
+        }
 
         index = 0;
         line = "";
