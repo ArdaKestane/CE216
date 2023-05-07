@@ -23,6 +23,7 @@ import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
 
+    private ArrayList<Translation> translations = Translator.translations;
     private Translation translation;
     private int index = 0;
     private String line = "";
@@ -135,7 +136,7 @@ public class Controller implements Initializable {
         landingPage.setVisible(false);
         resultPage.setVisible(true);
 
-    ArrayList<Translate> translationList = Translator.translate(searchedWord);
+    ArrayList<Translate> translationList = Translator.translate(searchedWord, translations);
     sourceBox.getItems().clear();
         for(Translate translate : translationList){
             sourceBox.getItems().add(translate.getSourceLanguage().toString());
@@ -156,7 +157,7 @@ public class Controller implements Initializable {
         searchField.setText(searchedWord);
         showTranslations(searchedWord,true);
 
-        ArrayList<Translate> translationList = Translator.translate(searchedWord);
+        ArrayList<Translate> translationList = Translator.translate(searchedWord, translations);
         sourceBox.getItems().clear();
         for(Translate translate : translationList){
             sourceBox.getItems().add(translate.getSourceLanguage().toString());
@@ -180,7 +181,7 @@ public class Controller implements Initializable {
 
         word = Character.toUpperCase(word.charAt(0)) + word.substring(1).toLowerCase();
 
-        if (!Translator.translate(word).isEmpty()) {
+        if (!Translator.translate(word, translations).isEmpty()) {
             return;
         }
 
@@ -217,7 +218,7 @@ public class Controller implements Initializable {
 
     public void showSynonyms(String word) {
         wordList.getItems().clear();
-        ArrayList<Synonym> synonyms = Translator.findSynonyms(word);
+        ArrayList<Synonym> synonyms = Translator.findSynonyms(word, translations);
         ArrayList<String> temp = null;
         Synonym s = null;
         if (synonyms.isEmpty())
@@ -256,7 +257,7 @@ public class Controller implements Initializable {
     }
     public int showTranslations(String word, boolean bool){
         wordList.getItems().clear();
-        ArrayList<Translate> translationList = Translator.translate(word);
+        ArrayList<Translate> translationList = Translator.translate(word, translations);
         
         ArrayList<ArrayList<String>> temp = null;
         String srcLng = "";
@@ -387,7 +388,7 @@ ArrayList<String> deneme = new ArrayList<>();
         landingPage.setEffect(blur);
     }
 
-    public void closeAddModal() throws IOException, URISyntaxException {
+    public void closeAddModal() {
         addModal.setVisible(false);
         landingPage.setEffect(null);
 
@@ -454,11 +455,16 @@ ArrayList<String> deneme = new ArrayList<>();
             System.out.println(l);
         }  // File durumu bunda da var incelenmesi lazım
 
-        for(Translation t : Translator.translations) {
-            if(t.getSourceLanguage().equals(srcLang) && t.getDestinationLanguage().equals(dstLang))
+        for(Translation t : translations) {
+            if(t.getSourceLanguage().equals(srcLang) && t.getDestinationLanguage().equals(dstLang)) {
+                t.addSourceWord(word);
                 for(String s : lineList)
-                    t.addTranslation(word, s);
+                    t.addTranslation(word,s);
+            }
         }
+
+
+
 
         index = 0;
         line = "";
@@ -516,7 +522,7 @@ ArrayList<String> deneme = new ArrayList<>();
         deneme.clear();
         editResult.getChildren().clear();
         String word = editSearchField.getText();
-        ArrayList<Translate> result = Translator.translate(word);
+        ArrayList<Translate> result = Translator.translate(word, translations);
         showTranslations(word, false);
 
         for (String s : deneme) {

@@ -90,14 +90,15 @@ public class Translator {
 
         return translations;
     }
-    public static ArrayList<Translate> translate(String word) {
+    public static ArrayList<Translate> translate(String word, ArrayList<Translation> translations) {
+
         ArrayList<Translate> translate = new ArrayList<>();
         boolean isEnglishFound = false;
 
         for(Translation translation : translations) {
             Collection<String> sourceWords = translation.getAllWords();
             for (String w : sourceWords) {
-                if(w.equals(word)) {
+                if(w.toLowerCase().equals(word)) {
                     String sourceLanguage = translation.getSourceLanguage();
                     if(isEnglishFound && sourceLanguage.equals("English"))
                         continue;
@@ -154,15 +155,15 @@ public class Translator {
         return translate;
     }
 
-    public static ArrayList<Synonym> findSynonyms(String word) { //okul
-        ArrayList<Translate> translations = translate(word); //okul'un çevirileri
+    public static ArrayList<Synonym> findSynonyms(String word, ArrayList<Translation> myTranslations) { //okul
+        ArrayList<Translate> translations = translate(word, myTranslations); //okul'un çevirileri
         ArrayList<Synonym> synonyms = new ArrayList<>();
         for(Translate translation : translations) {
             String srcLan = translation.getSourceLanguage(); // türkçe
             String tempWord;
             if (srcLan.equals("English")) {
                 tempWord = translation.getTur().get(0).get(0);
-                ArrayList<Translate> selfTranslations = translate(tempWord); //school'un çevirileri
+                ArrayList<Translate> selfTranslations = translate(tempWord, myTranslations); //school'un çevirileri
                 ArrayList<ArrayList<String>> backTranslations;
                 for (Translate st : selfTranslations) {
                     if(st.getSourceLanguage().equals("Turkish")) {
@@ -184,7 +185,7 @@ public class Translator {
                 }
             } else {
                 tempWord = translation.getEng().get(0).get(0); //school
-                ArrayList<Translate> selfTranslations = translate(tempWord); //school'un çevirileri
+                ArrayList<Translate> selfTranslations = translate(tempWord, myTranslations); //school'un çevirileri
                 for (Translate st : selfTranslations) {
                     ArrayList<ArrayList<String>> backTranslations;
                     synonyms.add(new Synonym(srcLan, word));
