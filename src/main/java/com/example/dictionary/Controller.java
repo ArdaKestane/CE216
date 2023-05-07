@@ -13,12 +13,24 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
+import java.io.*;
 import java.lang.reflect.Array;
+import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
+
+    private Translation translation;
+    private int index = 0;
+    private String line = "";
+    private String word = "";
+    private String srcLang = "";
+    private String dstLang = "";
+    private ArrayList<String> lineList = new ArrayList<>();
+
     @FXML
     private VBox landingPage;
     @FXML
@@ -141,6 +153,42 @@ public class Controller implements Initializable {
             System.out.println("The word is not available in the dictionary.");
         }
 
+    }
+
+    // TODO : choiceboxları seçildikten sonra ya kapat ya da başka aksiyon bak
+
+    public void addTranslation() {
+        word = addWord.getText();
+        srcLang = addSourceBox.getValue();
+        dstLang = addDstBox.getValue();
+
+        word = Character.toUpperCase(word.charAt(0)) + word.substring(1).toLowerCase();
+
+        if (!Translator.translate(word).isEmpty()) {
+            return;
+        }
+
+        translation = new Translation(srcLang, dstLang);
+        translation.addSourceWord(word);
+
+        index++;
+        line = index + ". " + newTranslation.getText();
+        lineList.add(line);
+        System.out.println(line);
+        newTranslation.clear();
+
+        addWord.setEditable(false);
+
+    }
+
+    public void addSynonym() {
+        if (line.isBlank()) {
+            return;
+        }
+        line += ", " + newSynonym.getText();
+        lineList.set((index - 1), line);
+        newSynonym.clear();
+        System.out.println(line);
     }
 
     public void showSynonyms(){
@@ -312,7 +360,6 @@ ArrayList<String> deneme = new ArrayList();
 
     }
 
-
     public void openAddModal(){
         addModal.setVisible(true);
 
@@ -324,13 +371,303 @@ ArrayList<String> deneme = new ArrayList();
         landingPage.setEffect(blur);
     }
 
-    public void closeAddModal(){
+    public void closeAddModal() throws IOException, URISyntaxException {
         addModal.setVisible(false);
         landingPage.setEffect(null);
 
         addWord.clear();
         newTranslation.clear();
         newSynonym.clear();
+
+        addWord.setEditable(true);
+
+        boolean isFirstTime = true;
+        for (String line : lineList) {
+            if (dstLang.equals("English")) {
+                if (srcLang.equals("Turkish")) {
+                    String fileName = "tur-eng.txt";
+                    URL url = Controller.class.getResource("/translations/" + fileName);
+                    File file = new File(url.toURI());
+                    FileOutputStream fos = new FileOutputStream(file, true);
+                    try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos, StandardCharsets.UTF_8))) {
+                        if (isFirstTime) {
+                            bw.write(word);
+                            bw.newLine();
+                        }
+                        bw.write(line);
+                        bw.newLine();
+                        isFirstTime = false;
+                        System.out.println("Content appended to " + fileName);
+                    } catch (IOException e) {
+                        System.err.println("Error appending to " + fileName + ": " + e.getMessage());
+                    }
+                } else if (srcLang.equals("German")) {
+                    String fileName = "deu-eng.txt";
+                    URL url = Controller.class.getResource("/translations/" + fileName);
+                    File file = new File(url.toURI());
+                    FileOutputStream fos = new FileOutputStream(file, true);
+                    try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos, StandardCharsets.UTF_8))) {
+                        if (isFirstTime) {
+                            bw.write(word);
+                            bw.newLine();
+                        }
+                        bw.write(line);
+                        bw.newLine();
+                        isFirstTime = false;
+                        System.out.println("Content appended to " + fileName);
+                    } catch (IOException e) {
+                        System.err.println("Error appending to " + fileName + ": " + e.getMessage());
+                    }
+                } else if (srcLang.equals("Greek")) {
+                    String fileName = "ell-eng.txt";
+                    URL url = Controller.class.getResource("/translations/" + fileName);
+                    File file = new File(url.toURI());
+                    FileOutputStream fos = new FileOutputStream(file, true);
+                    try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos, StandardCharsets.UTF_8))) {
+                        if (isFirstTime) {
+                            bw.write(word);
+                            bw.newLine();
+                        }
+                        bw.write(line);
+                        bw.newLine();
+                        isFirstTime = false;
+                        System.out.println("Content appended to " + fileName);
+                    } catch (IOException e) {
+                        System.err.println("Error appending to " + fileName + ": " + e.getMessage());
+                    }
+                } else if (srcLang.equals("French")) {
+                    String fileName = "fra-eng.txt";
+                    URL url = Controller.class.getResource("/translations/" + fileName);
+                    File file = new File(url.toURI());
+                    FileOutputStream fos = new FileOutputStream(file, true);
+                    try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos, StandardCharsets.UTF_8))) {
+                        if (isFirstTime) {
+                            bw.write(word);
+                            bw.newLine();
+                        }
+                        bw.write(line);
+                        bw.newLine();
+                        isFirstTime = false;
+                        System.out.println("Content appended to " + fileName);
+                    } catch (IOException e) {
+                        System.err.println("Error appending to " + fileName + ": " + e.getMessage());
+                    }
+                } else if (srcLang.equals("Italian")) {
+                    String fileName = "ita-eng.txt";
+                    URL url = Controller.class.getResource("/translations/" + fileName);
+                    File file = new File(url.toURI());
+                    FileOutputStream fos = new FileOutputStream(file, true);
+                    try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos, StandardCharsets.UTF_8))) {
+                        if (isFirstTime) {
+                            bw.write(word);
+                            bw.newLine();
+                        }
+                        bw.write(line);
+                        bw.newLine();
+                        isFirstTime = false;
+                        System.out.println("Content appended to " + fileName);
+                    } catch (IOException e) {
+                        System.err.println("Error appending to " + fileName + ": " + e.getMessage());
+                    }
+                } else if (srcLang.equals("Swedish")) {
+                    String fileName = "swe-eng.txt";
+                    URL url = Controller.class.getResource("/translations/" + fileName);
+                    File file = new File(url.toURI());
+                    FileOutputStream fos = new FileOutputStream(file, true);
+                    try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos, StandardCharsets.UTF_8))) {
+                        if (isFirstTime) {
+                            bw.write(word);
+                            bw.newLine();
+                        }
+                        bw.write(line);
+                        bw.newLine();
+                        isFirstTime = false;
+                        System.out.println("Content appended to " + fileName);
+                    } catch (IOException e) {
+                        System.err.println("Error appending to " + fileName + ": " + e.getMessage());
+                    }
+                }
+            } else if (srcLang.equals("English")) {
+                if (dstLang.equals("Turkish")) {
+                    String fileName = "eng-tur.txt";
+                    URL url = Controller.class.getResource("/translations/" + fileName);
+                    File file = new File(url.toURI());
+                    FileOutputStream fos = new FileOutputStream(file, true);
+                    try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos, StandardCharsets.UTF_8))) {
+                        if (isFirstTime) {
+                            bw.write(word);
+                            bw.newLine();
+                        }
+                        bw.write(line);
+                        bw.newLine();
+                        isFirstTime = false;
+                        System.out.println("Content appended to " + fileName);
+                    } catch (IOException e) {
+                        System.err.println("Error appending to " + fileName + ": " + e.getMessage());
+                    }
+                } else if (dstLang.equals("German")) {
+                    String fileName = "eng-deu.txt";
+                    URL url = Controller.class.getResource("/translations/" + fileName);
+                    File file = new File(url.toURI());
+                    FileOutputStream fos = new FileOutputStream(file, true);
+                    try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos, StandardCharsets.UTF_8))) {
+                        if (isFirstTime) {
+                            bw.write(word);
+                            bw.newLine();
+                        }
+                        bw.write(line);
+                        bw.newLine();
+                        isFirstTime = false;
+                        System.out.println("Content appended to " + fileName);
+                    } catch (IOException e) {
+                        System.err.println("Error appending to " + fileName + ": " + e.getMessage());
+                    }
+                } else if (dstLang.equals("Greek")) {
+                    String fileName = "eng-ell.txt";
+                    URL url = Controller.class.getResource("/translations/" + fileName);
+                    File file = new File(url.toURI());
+                    FileOutputStream fos = new FileOutputStream(file, true);
+                    try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos, StandardCharsets.UTF_8))) {
+                        if (isFirstTime) {
+                            bw.write(word);
+                            bw.newLine();
+                        }
+                        bw.write(line);
+                        bw.newLine();
+                        isFirstTime = false;
+                        System.out.println("Content appended to " + fileName);
+                    } catch (IOException e) {
+                        System.err.println("Error appending to " + fileName + ": " + e.getMessage());
+                    }
+                } else if (dstLang.equals("French")) {
+                    String fileName = "eng-fra.txt";
+                    URL url = Controller.class.getResource("/translations/" + fileName);
+                    File file = new File(url.toURI());
+                    FileOutputStream fos = new FileOutputStream(file, true);
+                    try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos, StandardCharsets.UTF_8))) {
+                        if (isFirstTime) {
+                            bw.write(word);
+                            bw.newLine();
+                        }
+                        bw.write(line);
+                        bw.newLine();
+                        isFirstTime = false;
+                        System.out.println("Content appended to " + fileName);
+                    } catch (IOException e) {
+                        System.err.println("Error appending to " + fileName + ": " + e.getMessage());
+                    }
+                } else if (dstLang.equals("Italian")) {
+                    String fileName = "eng-ita.txt";
+                    URL url = Controller.class.getResource("/translations/" + fileName);
+                    File file = new File(url.toURI());
+                    FileOutputStream fos = new FileOutputStream(file, true);
+                    try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos, StandardCharsets.UTF_8))) {
+                        if (isFirstTime) {
+                            bw.write(word);
+                            bw.newLine();
+                        }
+                        bw.write(line);
+                        bw.newLine();
+                        isFirstTime = false;
+                        System.out.println("Content appended to " + fileName);
+                    } catch (IOException e) {
+                        System.err.println("Error appending to " + fileName + ": " + e.getMessage());
+                    }
+                } else if (dstLang.equals("Swedish")) {
+                    String fileName = "eng-swe.txt";
+                    URL url = Controller.class.getResource("/translations/" + fileName);
+                    File file = new File(url.toURI());
+                    FileOutputStream fos = new FileOutputStream(file, true);
+                    try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos, StandardCharsets.UTF_8))) {
+                        if (isFirstTime) {
+                            bw.write(word);
+                            bw.newLine();
+                        }
+                        bw.write(line);
+                        bw.newLine();
+                        isFirstTime = false;
+                        System.out.println("Content appended to " + fileName);
+                    } catch (IOException e) {
+                        System.err.println("Error appending to " + fileName + ": " + e.getMessage());
+                    }
+                }
+            } else {
+                if (srcLang.equals("Turkish") && dstLang.equals("German")) {
+
+                } else if (srcLang.equals("Turkish") && dstLang.equals("Greek")) {
+
+                } else if (srcLang.equals("Turkish") && dstLang.equals("French")) {
+
+                }
+                else if (srcLang.equals("Turkish") && dstLang.equals("Italian")) {
+
+                }
+                else if (srcLang.equals("Turkish") && dstLang.equals("Swedish")) {
+
+                } else if (srcLang.equals("German") && dstLang.equals("Greek")) {
+
+                } else if (srcLang.equals("German") && dstLang.equals("French")) {
+
+                } else if (srcLang.equals("German") && dstLang.equals("Italian")) {
+
+                } else if (srcLang.equals("German") && dstLang.equals("Swedish")) {
+
+                } else if (srcLang.equals("German") && dstLang.equals("Turkish")) {
+
+                } else if (srcLang.equals("Greek") && dstLang.equals("German")) {
+
+                } else if (srcLang.equals("Greek") && dstLang.equals("French")) {
+
+                } else if (srcLang.equals("Greek") && dstLang.equals("Italian")) {
+
+                } else if (srcLang.equals("Greek") && dstLang.equals("Swedish")) {
+
+                } else if (srcLang.equals("Greek") && dstLang.equals("Turkish")) {
+
+                } else if (srcLang.equals("French") && dstLang.equals("German")) {
+
+                } else if (srcLang.equals("French") && dstLang.equals("Greek")) {
+
+                } else if (srcLang.equals("French") && dstLang.equals("Italian")) {
+
+                } else if (srcLang.equals("French") && dstLang.equals("Turkish")) {
+
+                } else if (srcLang.equals("French") && dstLang.equals("Swedish")) {
+
+                } else if (srcLang.equals("Italian") && dstLang.equals("German")) {
+
+                } else if (srcLang.equals("Italian") && dstLang.equals("Greek")) {
+
+                } else if (srcLang.equals("Italian") && dstLang.equals("Turkish")) {
+
+                } else if (srcLang.equals("Italian") && dstLang.equals("Swedish")) {
+
+                } else if (srcLang.equals("Italian") && dstLang.equals("French")) {
+
+                } else if (srcLang.equals("Swedish") && dstLang.equals("German")) {
+
+                } else if (srcLang.equals("Swedish") && dstLang.equals("Greek")) {
+
+                } else if (srcLang.equals("Swedish") && dstLang.equals("French")) {
+
+                } else if (srcLang.equals("Swedish") && dstLang.equals("Italian")) {
+
+                } else if (srcLang.equals("Swedish") && dstLang.equals("Turkish")) {
+
+                }
+            }
+
+        }
+
+        for (String l : lineList) {
+            translation.addTranslation(word, l);
+            System.out.println(l);
+        }  // File durumu bunda da var incelenmesi lazım
+
+        index = 0;
+        line = "";
+        lineList.clear();
+        translation = null;
     }
 
     public void openEditModal(){

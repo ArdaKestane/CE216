@@ -21,7 +21,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox fx:id="mainVBox" alignment="TOP_CENTER" minHeight="800.0" minWidth="1500.0" prefHeight="800.0" prefWidth="1500.0" spacing="20.0" style="-fx-background-color: #F7F1E5;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dictionary.Controller">
+<VBox fx:id="mainVBox" alignment="TOP_CENTER" minHeight="800.0" minWidth="1500.0" prefHeight="800.0" prefWidth="1500.0" spacing="20.0" style="-fx-background-color: #F7F1E5;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dictionary.Controller">
    <children>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
@@ -339,7 +339,7 @@
                            </padding>
                         </Label>
                         <TextField fx:id="newTranslation" focusTraversable="false" prefHeight="92.0" prefWidth="314.0" promptText="Translation" style="-fx-background-radius: 20;" GridPane.rowIndex="1" />
-                        <Button focusTraversable="false" mnemonicParsing="false" prefHeight="30.0" prefWidth="46.0" style="-fx-background-radius: 10;" text="Add" textFill="#616161" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Button focusTraversable="false" mnemonicParsing="false" onAction="#addTranslation" prefHeight="30.0" prefWidth="46.0" style="-fx-background-radius: 10;" text="Add" textFill="#616161" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <font>
                               <Font name="Constantia" size="14.0" />
                            </font>
@@ -350,7 +350,7 @@
                            </font>
                         </Label>
                         <TextField fx:id="newSynonym" focusTraversable="false" prefHeight="84.0" prefWidth="314.0" promptText="Synonym" style="-fx-background-radius: 20;" GridPane.rowIndex="3" />
-                        <Button focusTraversable="false" mnemonicParsing="false" prefHeight="30.0" prefWidth="46.0" style="-fx-background-radius: 10;" text="Add" textFill="#616161" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <Button focusTraversable="false" mnemonicParsing="false" onAction="#addSynonym" prefHeight="30.0" prefWidth="46.0" style="-fx-background-radius: 10;" text="Add" textFill="#616161" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <font>
                               <Font name="Constantia" size="14.0" />
                            </font>
