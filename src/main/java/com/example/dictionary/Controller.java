@@ -23,6 +23,8 @@ import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
 
+    private String editSrcLan;
+    private  String editDstLan;
     private Label editLabel;
     private ArrayList<Translation> translations = Translator.translations;
     private ArrayList<String> editList = new ArrayList<>();
@@ -274,7 +276,11 @@ public class Controller implements Initializable {
         else {
             dstLng = editDstBox.getValue() == null ? "English" : editDstBox.getValue();
             srcLng = editSourceBox.getValue() == null ? "Turkish" : editSourceBox.getValue();
+            editDstLan = dstLng;
+            editSrcLan = srcLng;
         }
+
+
         Translate t  = null;
         if(translationList.size()==0){
             System.out.println("TranslationList is empty");
@@ -579,6 +585,7 @@ public class Controller implements Initializable {
         ArrayList<Translate> result = Translator.translate(word, translations);
         showTranslations(word, false);
 
+
         for (String s : editList) {
             HBox hbox = new HBox();
             hbox.setSpacing(10);
@@ -633,12 +640,40 @@ public class Controller implements Initializable {
                     index = i;
 
             editList.set(index, editedStr);
-            System.out.println(editList);
         });
 
         editDone.setOnAction(event -> {
             editModal.setVisible(false);
             landingPage.setEffect(null);
+
+            if(editSrcLan.equals("English") || editDstLan.equals("English")) {
+                String fileName = languageToFile(editSrcLan) + "-" + languageToFile(editDstLan) + ".txt";
+                try {
+                    URL url = Controller.class.getResource("/translations/" + fileName);
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream(), StandardCharsets.UTF_8));
+                    String line = reader.readLine();
+                    while (line != null) {
+                        try {
+                            if(line.contains(word)) {
+                                File file = new File("src/main/resources/translations/" + fileName);
+                                try (FileWriter fw = new FileWriter(file, true);
+                                     BufferedWriter bw = new BufferedWriter(fw)) {
+
+                                }
+                            }
+                        }
+                         catch (StringIndexOutOfBoundsException s) {
+                            break;
+                        }
+                        line = reader.readLine();
+                    }
+                    reader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
         });
     }
 
