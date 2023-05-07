@@ -97,6 +97,22 @@ public class Controller implements Initializable {
      // Problem 5: Landing page textArea has border color when it is not in the focus mode
      ***/
 
+    public String languageToFile(String language) {
+        String fileName;
+        switch (language) {
+            case "Turkish" -> fileName = "tur";
+            case "English" -> fileName = "eng";
+            case "Swedish" -> fileName = "swe";
+            case "Italian" -> fileName = "ita";
+            case "Greek" -> fileName = "ell";
+            case "French" -> fileName = "fra";
+            case "German" -> fileName = "deu";
+            default -> fileName = "";
+
+        }
+            return fileName;
+    }
+
 
     public void initialize() {
         wordList.setMouseTransparent( true );
@@ -245,7 +261,7 @@ public class Controller implements Initializable {
         ArrayList<ArrayList<String>> temp = null;
         String srcLng = "";
         String dstLng = "";
-        if(bool == true) {
+        if(bool) {
             dstLng = dstBox.getValue() == null ? "English" : dstBox.getValue();
             srcLng = sourceBox.getValue() == null ? "Turkish" : sourceBox.getValue();
         }
@@ -314,7 +330,7 @@ public class Controller implements Initializable {
             }
             String line = tempS.toString() ;
             System.out.println(line);
-            if (bool ==true)
+            if (bool)
                 wordList.getItems().add(line);
             else
                 deneme.add(line);
@@ -326,7 +342,7 @@ public class Controller implements Initializable {
 
     }
 
-ArrayList<String> deneme = new ArrayList();
+ArrayList<String> deneme = new ArrayList<>();
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         addSourceBox.getItems().addAll("Turkish","English","German","Greek","French","Italian","Swedish");
@@ -384,213 +400,41 @@ ArrayList<String> deneme = new ArrayList();
         boolean isFirstTime = true;
         for (String line : lineList) {
             if (dstLang.equals("English")) {
-                if (srcLang.equals("Turkish")) {
-                    String fileName = "tur-eng.txt";
-                    URL url = Controller.class.getResource("/translations/" + fileName);
-                    File file = new File(url.toURI());
-                    FileOutputStream fos = new FileOutputStream(file, true);
-                    try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos, StandardCharsets.UTF_8))) {
-                        if (isFirstTime) {
-                            bw.write(word);
-                            bw.newLine();
-                        }
-                        bw.write(line);
+                String fileName = languageToFile(srcLang) + "-eng.txt";
+                URL url = Controller.class.getResource("/translations/" + fileName);
+                File file = new File(url.toURI());
+                FileOutputStream fos = new FileOutputStream(file, true);
+                try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos, StandardCharsets.UTF_8))) {
+                    if (isFirstTime) {
+                        bw.write(word);
                         bw.newLine();
-                        isFirstTime = false;
-                        System.out.println("Content appended to " + fileName);
-                    } catch (IOException e) {
-                        System.err.println("Error appending to " + fileName + ": " + e.getMessage());
                     }
-                } else if (srcLang.equals("German")) {
-                    String fileName = "deu-eng.txt";
-                    URL url = Controller.class.getResource("/translations/" + fileName);
-                    File file = new File(url.toURI());
-                    FileOutputStream fos = new FileOutputStream(file, true);
-                    try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos, StandardCharsets.UTF_8))) {
-                        if (isFirstTime) {
-                            bw.write(word);
-                            bw.newLine();
-                        }
-                        bw.write(line);
-                        bw.newLine();
-                        isFirstTime = false;
-                        System.out.println("Content appended to " + fileName);
-                    } catch (IOException e) {
-                        System.err.println("Error appending to " + fileName + ": " + e.getMessage());
-                    }
-                } else if (srcLang.equals("Greek")) {
-                    String fileName = "ell-eng.txt";
-                    URL url = Controller.class.getResource("/translations/" + fileName);
-                    File file = new File(url.toURI());
-                    FileOutputStream fos = new FileOutputStream(file, true);
-                    try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos, StandardCharsets.UTF_8))) {
-                        if (isFirstTime) {
-                            bw.write(word);
-                            bw.newLine();
-                        }
-                        bw.write(line);
-                        bw.newLine();
-                        isFirstTime = false;
-                        System.out.println("Content appended to " + fileName);
-                    } catch (IOException e) {
-                        System.err.println("Error appending to " + fileName + ": " + e.getMessage());
-                    }
-                } else if (srcLang.equals("French")) {
-                    String fileName = "fra-eng.txt";
-                    URL url = Controller.class.getResource("/translations/" + fileName);
-                    File file = new File(url.toURI());
-                    FileOutputStream fos = new FileOutputStream(file, true);
-                    try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos, StandardCharsets.UTF_8))) {
-                        if (isFirstTime) {
-                            bw.write(word);
-                            bw.newLine();
-                        }
-                        bw.write(line);
-                        bw.newLine();
-                        isFirstTime = false;
-                        System.out.println("Content appended to " + fileName);
-                    } catch (IOException e) {
-                        System.err.println("Error appending to " + fileName + ": " + e.getMessage());
-                    }
-                } else if (srcLang.equals("Italian")) {
-                    String fileName = "ita-eng.txt";
-                    URL url = Controller.class.getResource("/translations/" + fileName);
-                    File file = new File(url.toURI());
-                    FileOutputStream fos = new FileOutputStream(file, true);
-                    try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos, StandardCharsets.UTF_8))) {
-                        if (isFirstTime) {
-                            bw.write(word);
-                            bw.newLine();
-                        }
-                        bw.write(line);
-                        bw.newLine();
-                        isFirstTime = false;
-                        System.out.println("Content appended to " + fileName);
-                    } catch (IOException e) {
-                        System.err.println("Error appending to " + fileName + ": " + e.getMessage());
-                    }
-                } else if (srcLang.equals("Swedish")) {
-                    String fileName = "swe-eng.txt";
-                    URL url = Controller.class.getResource("/translations/" + fileName);
-                    File file = new File(url.toURI());
-                    FileOutputStream fos = new FileOutputStream(file, true);
-                    try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos, StandardCharsets.UTF_8))) {
-                        if (isFirstTime) {
-                            bw.write(word);
-                            bw.newLine();
-                        }
-                        bw.write(line);
-                        bw.newLine();
-                        isFirstTime = false;
-                        System.out.println("Content appended to " + fileName);
-                    } catch (IOException e) {
-                        System.err.println("Error appending to " + fileName + ": " + e.getMessage());
-                    }
+                    bw.write(line);
+                    bw.newLine();
+                    isFirstTime = false;
+                    System.out.println("Content appended to " + fileName);
+                } catch (IOException e) {
+                    System.err.println("Error appending to " + fileName + ": " + e.getMessage());
                 }
+
             } else if (srcLang.equals("English")) {
-                if (dstLang.equals("Turkish")) {
-                    String fileName = "eng-tur.txt";
-                    URL url = Controller.class.getResource("/translations/" + fileName);
-                    File file = new File(url.toURI());
-                    FileOutputStream fos = new FileOutputStream(file, true);
-                    try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos, StandardCharsets.UTF_8))) {
-                        if (isFirstTime) {
-                            bw.write(word);
-                            bw.newLine();
-                        }
-                        bw.write(line);
+                String fileName = "eng-" + languageToFile(dstLang) + ".txt";
+                URL url = Controller.class.getResource("/translations/" + fileName);
+                File file = new File(url.toURI());
+                FileWriter fw = new FileWriter(file, true);
+                try (BufferedWriter bw = new BufferedWriter(fw)) {
+                    if (isFirstTime) {
+                        bw.write(word);
                         bw.newLine();
-                        isFirstTime = false;
-                        System.out.println("Content appended to " + fileName);
-                    } catch (IOException e) {
-                        System.err.println("Error appending to " + fileName + ": " + e.getMessage());
                     }
-                } else if (dstLang.equals("German")) {
-                    String fileName = "eng-deu.txt";
-                    URL url = Controller.class.getResource("/translations/" + fileName);
-                    File file = new File(url.toURI());
-                    FileOutputStream fos = new FileOutputStream(file, true);
-                    try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos, StandardCharsets.UTF_8))) {
-                        if (isFirstTime) {
-                            bw.write(word);
-                            bw.newLine();
-                        }
-                        bw.write(line);
-                        bw.newLine();
-                        isFirstTime = false;
-                        System.out.println("Content appended to " + fileName);
-                    } catch (IOException e) {
-                        System.err.println("Error appending to " + fileName + ": " + e.getMessage());
-                    }
-                } else if (dstLang.equals("Greek")) {
-                    String fileName = "eng-ell.txt";
-                    URL url = Controller.class.getResource("/translations/" + fileName);
-                    File file = new File(url.toURI());
-                    FileOutputStream fos = new FileOutputStream(file, true);
-                    try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos, StandardCharsets.UTF_8))) {
-                        if (isFirstTime) {
-                            bw.write(word);
-                            bw.newLine();
-                        }
-                        bw.write(line);
-                        bw.newLine();
-                        isFirstTime = false;
-                        System.out.println("Content appended to " + fileName);
-                    } catch (IOException e) {
-                        System.err.println("Error appending to " + fileName + ": " + e.getMessage());
-                    }
-                } else if (dstLang.equals("French")) {
-                    String fileName = "eng-fra.txt";
-                    URL url = Controller.class.getResource("/translations/" + fileName);
-                    File file = new File(url.toURI());
-                    FileOutputStream fos = new FileOutputStream(file, true);
-                    try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos, StandardCharsets.UTF_8))) {
-                        if (isFirstTime) {
-                            bw.write(word);
-                            bw.newLine();
-                        }
-                        bw.write(line);
-                        bw.newLine();
-                        isFirstTime = false;
-                        System.out.println("Content appended to " + fileName);
-                    } catch (IOException e) {
-                        System.err.println("Error appending to " + fileName + ": " + e.getMessage());
-                    }
-                } else if (dstLang.equals("Italian")) {
-                    String fileName = "eng-ita.txt";
-                    URL url = Controller.class.getResource("/translations/" + fileName);
-                    File file = new File(url.toURI());
-                    FileOutputStream fos = new FileOutputStream(file, true);
-                    try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos, StandardCharsets.UTF_8))) {
-                        if (isFirstTime) {
-                            bw.write(word);
-                            bw.newLine();
-                        }
-                        bw.write(line);
-                        bw.newLine();
-                        isFirstTime = false;
-                        System.out.println("Content appended to " + fileName);
-                    } catch (IOException e) {
-                        System.err.println("Error appending to " + fileName + ": " + e.getMessage());
-                    }
-                } else if (dstLang.equals("Swedish")) {
-                    String fileName = "eng-swe.txt";
-                    URL url = Controller.class.getResource("/translations/" + fileName);
-                    File file = new File(url.toURI());
-                    FileOutputStream fos = new FileOutputStream(file, true);
-                    try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos, StandardCharsets.UTF_8))) {
-                        if (isFirstTime) {
-                            bw.write(word);
-                            bw.newLine();
-                        }
-                        bw.write(line);
-                        bw.newLine();
-                        isFirstTime = false;
-                        System.out.println("Content appended to " + fileName);
-                    } catch (IOException e) {
-                        System.err.println("Error appending to " + fileName + ": " + e.getMessage());
-                    }
+                    bw.write(line);
+                    bw.newLine();
+                    isFirstTime = false;
+                    System.out.println("Content appended to " + fileName);
+                } catch (IOException e) {
+                    System.err.println("Error appending to " + fileName + ": " + e.getMessage());
                 }
+
             } else {
                 if (srcLang.equals("Turkish") && dstLang.equals("German")) {
 
